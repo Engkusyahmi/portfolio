@@ -8,8 +8,8 @@
 }
 
 body {
-    background-color: #f8fafc; /* Crisp clean light background */
-    color: #1e293b; /* Dark text readability contrast */
+    background-color: #f8fafc; 
+    color: #1e293b; 
     line-height: 1.6;
 }
 
@@ -34,7 +34,7 @@ body {
 
 .text-center { text-align: center; }
 
-/* --- 🌐 2. NAVIGATION BAR (FIXED HALF-INVISIBLE DEFECT FROM SCREENSHOT 2026-06-08 224601.png) --- */
+/* --- 🌐 2. NAVIGATION BAR --- */
 header {
     background-color: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(12px);
@@ -71,6 +71,7 @@ nav a {
     font-weight: 600;
     transition: all 0.2s ease;
     font-size: 0.95rem;
+    cursor: pointer;
 }
 
 nav a:hover { color: #0284c7; }
@@ -160,6 +161,7 @@ nav a:hover { color: #0284c7; }
     text-decoration: none;
     font-weight: 700;
     transition: all 0.2s ease;
+    cursor: pointer;
 }
 
 .btn.primary { background-color: #0284c7; color: #fff; }
@@ -167,7 +169,7 @@ nav a:hover { color: #0284c7; }
 .btn.secondary { border: 1px solid #cbd5e1; color: #334155; background: #fff; }
 .btn.secondary:hover { background-color: #f1f5f9; transform: translateY(-2px); }
 
-/* --- 👤 4. ABOUT SECTION --- */
+/* --- 👤 4. ABOUT SECTION & NEW TIMELINE --- */
 .about-section { background-color: #ffffff; border-top: 1px solid #f1f5f9; border-bottom: 1px solid #f1f5f9; }
 .about-grid {
     display: grid;
@@ -209,14 +211,32 @@ nav a:hover { color: #0284c7; }
 
 .about-text p { color: #475569; margin: 1.5rem 0; font-size: 1.05rem; text-align: justify; }
 
+/* Timeline Structural Setup */
 .edu-timeline { margin-top: 2rem; border-left: 2px solid #e2e8f0; padding-left: 1.5rem; }
-.edu-item { position: relative; margin-bottom: 1.5rem; }
+.edu-item { position: relative; margin-bottom: 2rem; }
+
+/* Bullet nodes untuk semua item timeline */
 .edu-item::before {
     content: ''; position: absolute; width: 12px; height: 12px; background: #0284c7; border-radius: 50%; left: -22px; top: 6px;
+    border: 2px solid #ffffff; box-shadow: 0 0 0 2px #0284c7;
 }
-.edu-year { font-size: 0.85rem; color: #0284c7; font-weight: 700; }
-.edu-item h4 { color: #0f172a; font-size: 1.1rem; font-weight: 700; }
-.edu-item h5 { color: #475569; font-weight: 600; }
+
+.edu-year { font-size: 0.85rem; color: #0284c7; font-weight: 700; display: block; margin-bottom: 0.2rem; }
+.edu-item h4 { color: #0f172a; font-size: 1.15rem; font-weight: 700; }
+.edu-item h5 { color: #475569; font-weight: 600; font-size: 1rem; }
+.edu-details { color: #64748b; font-size: 0.95rem; margin-top: 0.2rem !important; }
+
+/* MUET Highlight Styling Sejajar Layout Premium */
+.muet-highlight h4 { color: #0f172a; }
+.highlight-badge {
+    display: inline-block;
+    background: rgba(2, 132, 199, 0.08);
+    color: #0284c7 !important;
+    font-weight: 700;
+    padding: 0.1rem 0.6rem;
+    border-radius: 4px;
+    border: 1px solid rgba(2, 132, 199, 0.15);
+}
 
 /* --- 💼 5. EXPERIENCE SECTION --- */
 .experience-section { background-color: #f8fafc; }
@@ -298,7 +318,7 @@ nav a:hover { color: #0284c7; }
     transform: translateY(-1px);
 }
 
-/* --- ⚡ 7. SKILLS SECTION (POP UP & HIGHLIGHT ANIMATION) --- */
+/* --- ⚡ 7. SKILLS SECTION --- */
 .skills-section { background-color: #f8fafc; }
 .skills-grid {
     display: grid;
@@ -316,8 +336,8 @@ nav a:hover { color: #0284c7; }
 }
 
 .skill-card:hover {
-    transform: translateY(-8px) scale(1.02); /* Pop up effect */
-    border-color: #0284c7; /* Highlight border */
+    transform: translateY(-8px) scale(1.02); 
+    border-color: #0284c7; 
     box-shadow: 0 20px 25px -5px rgba(2, 132, 199, 0.08), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
 }
 
@@ -361,7 +381,7 @@ footer {
     background-color: #0f172a; color: #94a3b8; text-align: center; padding: 2.5rem 0; font-size: 0.9rem; font-weight: 500;
 }
 
-/* --- 📱 10. MOBILE SMART RESPONSIVE CONFIGURATION (FIXED SCREENSHOT CLIPPING) --- */
+/* --- 📱 10. MOBILE SMART RESPONSIVE CONFIGURATION --- */
 @media (max-width: 768px) {
     .section-container { padding: 3.5rem 0; }
     .hero h1 { font-size: 2.4rem; }
@@ -369,7 +389,6 @@ footer {
     .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
     .exp-header { flex-direction: column; gap: 0.4rem; }
 
-    /* Hamburger UI Activation Configuration */
     .nav-toggle-label {
         display: block; cursor: pointer; padding: 1rem; position: relative; z-index: 2000;
     }
@@ -379,7 +398,6 @@ footer {
     .nav-toggle-label span::before { content: ''; top: -7px; left: 0; position: absolute; }
     .nav-toggle-label span::after { content: ''; bottom: -7px; left: 0; position: absolute; }
 
-    /* Solid Opaque Drawer Panel Setup (Eliminates the Screenshot Visibility Glitch) */
     nav {
         position: fixed; 
         top: 0; 
@@ -387,7 +405,7 @@ footer {
         left: 100%; 
         width: 80%; 
         max-width: 320px;
-        background: #ffffff; /* Explicit background blocks text blending */
+        background: #ffffff; 
         box-shadow: -10px 0 30px rgba(0, 0, 0, 0.15); 
         padding: 6rem 2.5rem;
         display: flex; 
@@ -399,7 +417,6 @@ footer {
     nav a { margin-left: 0; font-size: 1.15rem; color: #0f172a; border-bottom: 1px solid #f1f5f9; padding-bottom: 0.5rem; }
     .nav-btn { text-align: center; border-bottom: none; background-color: #0284c7; color: #ffffff !important; }
 
-    /* Active State Slider Triggers */
     .nav-toggle:checked ~ nav { left: calc(100% - 80%); } 
     .nav-toggle:checked ~ nav { left: unset; right: 0; }
     
