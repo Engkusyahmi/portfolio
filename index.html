@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="ms">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Engku Syahmi | Portfolio</title>
     <link rel="stylesheet" href="css/style.css">
-    <!-- Font Awesome untuk ikon sosial media & menu -->
+    <!-- Font Awesome for social media & menu icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -22,7 +22,6 @@
             </label>
 
             <nav>
-                <!-- Ditukar ke "/" supaya tidak keluar index.html di domain -->
                 <a href="/">Home</a>
                 <a href="#about">About</a>
                 <a href="#experiences">Experiences</a>
@@ -36,7 +35,7 @@
     <!-- 🚀 HERO SECTION -->
     <section class="hero">
         <div class="hero-content">
-            <span class="badge">Available for Internship (Sept 2026 - Mac 2027)</span>
+            <span class="badge">Available for Internship (Sept 2026 - Mar 2027)</span>
             <h1>Engku Ahmad Syahmi</h1>
             <h2>Bin Engku Hishammuddin</h2>
             <p class="subtitle">Bachelor of Computer Science (Software Development) | CGPA: 3.63</p>
@@ -55,24 +54,24 @@
         <div class="section-container">
             <div class="about-grid">
                 <div class="about-img-container">
-                    <!-- Nota: Gantikan 'profile.jpg' dengan nama fail gambar kamu nanti -->
-                    <img src="profile.jpg" alt="Engku Syahmi" class="about-img" onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=500&auto=format&fit=crop'">
+                    <!-- Configured image folder and file pathway -->
+                    <img src="image/Profile.jpg" alt="Engku Syahmi" class="about-img" onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=500&auto=format&fit=crop'">
                     <div class="img-backdrop"></div>
                 </div>
                 <div class="about-text">
                     <h3 class="section-title">About Me</h3>
-                    <p>Saya merupakan penuntut ijazah sarjana muda dalam bidang Sains Komputer (Pembangunan Perisian) dari <strong>Universiti Sultan Zainal Abidin (UniSZA)</strong>. Mempunyai asas yang kukuh dalam merekabentuk sistem melalui ERD/DFD serta mengintegrasikan perkakasan IoT mikro-pengawal bersama aplikasi mudah alih.</p>
+                    <p>I am a dedicated Computer Science student majoring in Software Development at <strong>Universiti Sultan Zainal Abidin (UniSZA)</strong>. I possess a solid foundation in software architecture modeling using ERDs/DFDs, implementing hardware-software integrations via IoT microcontrollers, and crafting responsive web and mobile user interfaces.</p>
                     
                     <div class="edu-timeline">
                         <div class="edu-item">
-                            <span class="edu-year">2023 - Kini</span>
-                            <h4>Ijazah Sarjana Muda Sains Komputer (Pembangunan Perisian)</h4>
+                            <span class="edu-year">2023 - Present</span>
+                            <h4>Bachelor of Computer Science (Software Development)</h4>
                             <h5>Universiti Sultan Zainal Abidin (UniSZA)</h5>
-                            <p>CGPA: 3.63 | Band Muet: 4</p>
+                            <p>CGPA: 3.63 | MUET: Band 4</p>
                         </div>
                         <div class="edu-item">
                             <span class="edu-year">2020 - 2023</span>
-                            <h4>Diploma Teknologi Maklumat (Teknologi Digital)</h4>
+                            <h4>Diploma in Information Technology (Digital Technology)</h4>
                             <h5>Politeknik Kuala Terengganu</h5>
                             <p>CGPA: 3.51</p>
                         </div>
@@ -95,10 +94,10 @@
                     <span class="exp-date">Jan 2023 - Jun 2023</span>
                 </div>
                 <ul class="exp-bullets">
-                    <li><strong>Technical Troubleshooting:</strong> Mendiagnosis dan menyelesaikan masalah sambungan rangkaian, modem, dan router untuk kelancaran internet.</li>
-                    <li><strong>Fiber Optic Support:</strong> Membantu dalam pemasangan kabel gentian optik (fiber) dan konfigurasi infrastruktur telekomunikasi di tapak projek.</li>
-                    <li><strong>Configuration & Survey:</strong> Mengendalikan penilaian tapak struktur (site assessment) bagi penempatan Wi-Fi optimum.</li>
-                    <li><strong>Data Management:</strong> Menyusun serta menguruskan dokumentasi data operasi bagi tujuan laporan pentadbiran.</li>
+                    <li><strong>Technical Troubleshooting & Maintenance:</strong> Diagnosed and resolved network connectivity, modem, and router issues to ensure reliable internet service performance.</li>
+                    <li><strong>Fiber Optic Installation Support:</strong> Assisted in fiber optic deployment, onsite technical setup, and telecommunications infrastructure installations.</li>
+                    <li><strong>Network Configuration & Site Survey:</strong> Conducted site assessments and supported Wi-Fi/network scaling setups to optimize connectivity quality.</li>
+                    <li><strong>Documentation & Data Management:</strong> Organized, maintained, and compiled technical operational logs for reporting and administrative goals.</li>
                 </ul>
             </div>
         </div>
@@ -108,7 +107,7 @@
     <section id="projects" class="projects-section">
         <div class="section-container">
             <h3 class="section-title text-center">Featured Projects</h3>
-            <p class="section-desc">Senarai sistem, aplikasi mudah alih, dan laman web yang telah saya bangunkan sepanjang pengajian.</p>
+            <p class="section-desc text-center">A curation of production systems, cross-platform mobile apps, and frameworks engineered throughout my academic tenure.</p>
             
             <div class="projects-grid">
                 <!-- Project 1 -->
@@ -116,21 +115,27 @@
                     <span class="tag">Final Year Project</span>
                     <h4>AquaMonitor</h4>
                     <p class="project-subtitle">Smart Water Monitor & AI Chatbot</p>
-                    <p>Sistem IoT pemantauan air domestik menggunakan ESP32 dan penderia YF-S201. Dilengkapi aplikasi Flutter (visualisasi data graf masa nyata) dan AI Chatbot menggunakan pangkalan data MySQL UniSZA.</p>
+                    <p>IoT domestic water tracking platform utilizing ESP32 microcontrollers and YF-S201 sensors. Engineered with a Flutter dashboard for live telemetry visualization and native PHP micro APIs pointing to a secure MySQL infrastructure.</p>
                     <div class="tech-tags">
                         <span>Flutter</span><span>PHP API</span><span>MySQL</span><span>ESP32</span>
                     </div>
+                    <a href="https://github.com/Engkusyahmi" target="_blank" rel="noopener" class="project-git-link">
+                        <i class="fa-brands fa-github"></i> View Source Code
+                    </a>
                 </div>
 
                 <!-- Project 2 -->
                 <div class="project-card">
-                    <span class="tag">Individual</span>
+                    <span class="tag">Individual Project</span>
                     <h4>Saku Legacy</h4>
                     <p class="project-subtitle">Photo Booth Magnet App</p>
-                    <p>Aplikasi web photo booth mesra peranti mudah alih menggunakan Flutter Web. Menyokong ciri tangkapan gambar melalui browser tetamu (Guest Mode), pemilihan border, dan pemprosesan imej responsif.</p>
+                    <p>Mobile-optimized photo booth application utilizing Flutter Web. Supports client browser canvas captures via Guest Mode operations, border selection overlays, and cross-browser image rendering layouts.</p>
                     <div class="tech-tags">
                         <span>Flutter Web</span><span>Dart</span><span>Android Studio</span>
                     </div>
+                    <a href="https://github.com/Engkusyahmi" target="_blank" rel="noopener" class="project-git-link">
+                        <i class="fa-brands fa-github"></i> View Source Code
+                    </a>
                 </div>
 
                 <!-- Project 3 -->
@@ -138,21 +143,27 @@
                     <span class="tag">Group Project</span>
                     <h4>Drive N Rent</h4>
                     <p class="project-subtitle">Car Rental System</p>
-                    <p>Sistem pengurusan sewa kereta berasaskan web. Bertanggungjawab menguji model fungsi perisian, menyelesaikan pepijat (debugging) kritikal ahli pasukan, serta mengoptimumkan kestabilan pangkalan data Apache.</p>
+                    <p>Comprehensive enterprise vehicle management deployment. Assumed responsibilities for core module functional validation, executing debugging procedures across team units, and optimizing relational data pipelines on Apache server profiles.</p>
                     <div class="tech-tags">
                         <span>PHP</span><span>MySQL</span><span>Bootstrap</span><span>XAMPP</span>
                     </div>
+                    <a href="https://github.com/Engkusyahmi" target="_blank" rel="noopener" class="project-git-link">
+                        <i class="fa-brands fa-github"></i> View Source Code
+                    </a>
                 </div>
 
                 <!-- Project 4 -->
                 <div class="project-card">
-                    <span class="tag">Individual</span>
+                    <span class="tag">Individual Project</span>
                     <h4>WaterWise</h4>
                     <p class="project-subtitle">Gamification Smart Water Website</p>
-                    <p>Platform web gamifikasi penjejakan air bersih menggunakan framework CodeIgniter 4 (MVC). Dilengkapi sistem pengalaman (XP), pencapaian mata (achievements), misi harian, dan dashboard analitik interaktif.</p>
+                    <p>A web-based behavioral tracking gamification system built over a Model-View-Controller (MVC) architecture using CodeIgniter 4. Integrated an internal XP structure, user progression achievements, daily logs, and statistical metrics screens.</p>
                     <div class="tech-tags">
-                        <span>CodeIgniter 4</span><span>MVC</span><span>MySQL</span>
+                        <span>CodeIgniter 4</span><span>MVC Pattern</span><span>MySQL</span>
                     </div>
+                    <a href="https://github.com/Engkusyahmi" target="_blank" rel="noopener" class="project-git-link">
+                        <i class="fa-brands fa-github"></i> View Source Code
+                    </a>
                 </div>
             </div>
         </div>
@@ -166,22 +177,22 @@
                 <div class="skill-card">
                     <i class="fa-solid fa-code skill-icon"></i>
                     <h4>Web & Backend</h4>
-                    <p>PHP (CodeIgniter 4), HTML5, CSS3, Tailwind CSS, Bootstrap, XAMPP, MySQL Database.</p>
+                    <p>PHP (CodeIgniter 4), HTML5, CSS3, Tailwind CSS, Bootstrap, XAMPP, MySQL Relational Database Environments.</p>
                 </div>
                 <div class="skill-card">
                     <i class="fa-solid fa-mobile-screen-button skill-icon"></i>
                     <h4>Mobile Application</h4>
-                    <p>Flutter (Cross-platform Development), Dart, Android Studio, NetBeans, Dev-C++.</p>
+                    <p>Flutter SDK Cross-platform Implementations, Dart Logic Systems, Android Studio Workspace configurations, C++ platforms.</p>
                 </div>
                 <div class="skill-card">
                     <i class="fa-solid fa-microchip skill-icon"></i>
                     <h4>IoT & Hardware</h4>
-                    <p>ESP32 Integration, Arduino IDE, Ultrasonic & IR Sensors, Hardware & Telecommunication Testing.</p>
+                    <p>ESP32 DevKit Integrations, Microcontroller Scripting on Arduino IDE, Sensor arrays (Ultrasonic/IR/Water Flow Testing).</p>
                 </div>
                 <div class="skill-card">
                     <i class="fa-solid fa-network-wired skill-icon"></i>
-                    <h4>Networking & Engineering</h4>
-                    <p>Cisco Packet Tracer, Wireshark, Fiber Optic, Agile/Scrum, System Analysis (ERD/DFD).</p>
+                    <h4>Networking & Architecture</h4>
+                    <p>Cisco Packet Tracer simulation engineering, Wireshark traffic telemetry analysis, Fiber Optic testing layouts, System Analysis modeling (ERD/DFD schemas).</p>
                 </div>
             </div>
         </div>
@@ -191,7 +202,7 @@
     <section id="contact" class="contact-section">
         <div class="section-container">
             <h3 class="section-title text-center">Contact & Connect</h3>
-            <p class="section-desc text-center">Sila hubungi saya melalui saluran di bawah untuk perbincangan tawaran latihan industri atau projek perisian.</p>
+            <p class="section-desc text-center">Feel free to drop a message or reach out across professional networks regarding prospective engineering roles or technical projects.</p>
             
             <div class="contact-grid">
                 <a href="mailto:engkusyahmi@gmail.com" class="contact-box">
@@ -204,6 +215,12 @@
                     <i class="fa-brands fa-linkedin"></i>
                     <h4>LinkedIn</h4>
                     <p>Connect Professional Profile</p>
+                </a>
+
+                <a href="https://github.com/Engkusyahmi" target="_blank" rel="noopener" class="contact-box">
+                    <i class="fa-brands fa-github"></i>
+                    <h4>GitHub</h4>
+                    <p>github.com/Engkusyahmi</p>
                 </a>
 
                 <a href="tel:0199595966" class="contact-box">
