@@ -1,0 +1,1022 @@
+/**
+*
+* ---------------------------------------------------------------------------
+*
+* Template : WaterWise - Water Conservation Gaming Platform
+* Author : Engku Syahmi
+* Theme : Water Conservation & Sustainability
+*
+* ---------------------------------------------------------------------------
+*
+*/
+
+/* =================================== */
+/*	Basic Style
+/* =================================== */
+
+:root {
+    --primary-blue: #0077be;
+    --secondary-blue: #00a8e6;
+    --accent-blue: #4fc3f7;
+    --water-blue: #29b6f6;
+    --dark-blue: #01579b;
+    --success-green: #4caf50;
+    --warning-orange: #ff9800;
+    --error-red: #f44336;
+    --light-gray: #f8f9fa;
+    --medium-gray: #6c757d;
+    --dark-gray: #343a40;
+    --white: #ffffff;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-hover: 0 8px 15px rgba(0, 0, 0, 0.2);
+    --border-radius: 8px;
+    --transition: all 0.3s ease;
+}
+
+/* Fix viewport and scaling issues */
+html {
+    font-size: 16px;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    box-sizing: border-box;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+body {
+    background-color: var(--white);
+    font-family: 'Open Sans', sans-serif;
+    line-height: 1.6;
+    font-size: 16px;
+    color: var(--dark-gray);
+    margin: 0;
+    padding: 0;
+    min-width: 320px;
+    overflow-x: hidden;
+}
+
+figure, p, address {
+    margin: 0;
+}
+
+p {
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+iframe {
+    border: 0;
+}
+
+a {
+    transition: var(--transition);
+    color: var(--primary-blue);
+    text-decoration: none;
+}
+
+a:hover, a:focus {
+    color: var(--secondary-blue);
+    text-decoration: none;
+    outline: none;
+}
+
+.btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 119, 190, 0.25);
+}
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family: 'Open Sans', sans-serif;
+    color: var(--dark-blue);
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+}
+
+main > section {
+    padding: 80px 0;
+}
+
+/* =================================== */
+/*	Buttons & Components
+/* =================================== */
+
+.btn {
+    border-radius: var(--border-radius);
+    border: 0;
+    position: relative;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: var(--transition);
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    user-select: none;
+    padding: 12px 30px;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.btn-blue {
+    background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+    color: var(--white);
+    box-shadow: var(--shadow);
+}
+
+.btn-blue:hover {
+    background: linear-gradient(135deg, var(--dark-blue), var(--primary-blue));
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+    color: var(--white);
+}
+
+.btn-border {
+    border: 2px solid var(--white);
+    color: var(--white);
+    background: transparent;
+}
+
+.btn-border:hover {
+    background: var(--white);
+    color: var(--primary-blue);
+}
+
+.btn-block {
+    display: block;
+    width: 100%;
+}
+
+.btn-effect:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s;
+    z-index: -1;
+}
+
+.btn-effect:hover:before {
+    left: 100%;
+}
+
+/* =================================== */
+/*	Preloader
+/* =================================== */
+
+#preloader {
+    background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loder-box {
+    text-align: center;
+}
+
+.water-drop {
+    width: 60px;
+    height: 60px;
+    background: var(--white);
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    animation: drop 2s ease-in-out infinite;
+    position: relative;
+}
+
+.water-drop::before {
+    content: "💧";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 24px;
+}
+
+@keyframes drop {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(180deg); }
+}
+
+/* =================================== */
+/*	Header
+/* =================================== */
+
+#navigation {
+    transition: all 0.3s ease;
+    background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 10px 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+#navigation.animated-header {
+    padding: 15px 0;
+    background: rgba(0, 119, 190, 0.95);
+    backdrop-filter: blur(10px);
+}
+
+h1.navbar-brand {
+    font-size: 28px;
+    font-weight: 700;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+h1.navbar-brand a {
+    color: var(--white);
+    text-decoration: none;
+    position: relative;
+}
+
+h1.navbar-brand a::after {
+    content: "💧";
+    margin-left: 8px;
+    font-size: 24px;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color: var(--white);
+    font-size: 15px;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 15px 20px;
+    transition: var(--transition);
+    position: relative;
+}
+
+.navbar-inverse .navbar-nav > li > a:hover {
+    color: var(--accent-blue);
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: var(--border-radius);
+}
+
+.navbar-inverse .navbar-nav > li > a::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 3px;
+    background: var(--accent-blue);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.navbar-inverse .navbar-nav > li > a:hover::before {
+    width: 80%;
+}
+
+/* =================================== */
+/*	Home Slider - 
+/* =================================== */
+
+#home-slider {
+    min-height: 100vh;
+    max-height: 100vh;
+    position: relative;
+    overflow: hidden;
+    padding: 0;
+}
+
+#home-slider::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 119, 190, 0.7);
+    z-index: 1;
+}
+
+.sl-slider-wrapper {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+}
+
+.sl-slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.sl-slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+/* Add these rules to your main.css */
+
+.sl-slide.bg-img-1 {
+    background: url('<?= base_url('/')?>/Waterwise/img/slider/bg1.jpg') no-repeat center center; /* Replace bg1.jpg with the actual path to your first slider image */
+    background-size: cover;
+}
+
+.sl-slide.bg-img-2 {
+    background: url('<?= base_url('/')?>/Waterwise/img/slider/bg2.jpg') no-repeat center center; /* Replace bg2.jpg with the actual path to your second slider image */
+    background-size: cover;
+}
+
+.sl-slide.bg-img-3 {
+    background: url('<?= base_url('/')?>/Waterwise/img/slider/bg3.jpg') no-repeat center center; /* Replace bg3.jpg with the actual path to your third slider image */
+    background-size: cover;
+}
+
+/* Also, ensure that the sl-slider-wrapper and sl-slide themselves are taking up the full height */
+#home-slider {
+    min-height: 100vh;
+    max-height: 100vh; /* This is already present, ensures slider takes full viewport height */
+    position: relative;
+    overflow: hidden;
+    padding: 0;
+}
+
+.sl-slider-wrapper {
+    width: 100%;
+    height: 100%; /* Changed from 100vh to 100% to fit parent #home-slider */
+    position: relative;
+}
+
+/* The .sl-slide already has width: 100% and height: 100%, which is good. */
+
+.slide-caption {
+    position: relative;
+    z-index: 10;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+}
+
+.caption-content {
+    max-width: 800px;
+    padding: 0 20px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.caption-content h2 {
+    font-size: 4rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    line-height: 1.2;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.caption-content > span {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+    font-weight: 300;
+    display: block;
+}
+
+.caption-content p {
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+    opacity: 0.8;
+}
+
+/* =================================== */
+/*	How It Works Section (Image Grid with Hover Overlay)
+/* =================================== */
+
+
+
+/* =================================== */
+/*	Our Services Section (formerly Service Features)
+/* =================================== */
+
+#our-services { /* Renamed from #features */
+    padding: 100px 0;
+    background: linear-gradient(135deg, #e3f2fd, #ffffff); /* Light blue gradient */
+}
+
+#our-services .sec-title {
+    margin-bottom: 60px;
+}
+
+#our-services .sec-title h2 {
+    color: #333 !important;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+#our-services .sec-title p {
+    color: #666 !important;
+    font-size: 1.2rem;
+}
+
+.service-feature { /* Renamed from .service-item-icon for clarity */
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    padding: 40px 20px;
+    margin-bottom: 30px;
+    transition: all 0.4s ease;
+    border: 1px solid #e0e0e0;
+    position: relative;
+    overflow: hidden;
+}
+
+.service-feature:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    border-color: var(--primary-blue);
+}
+
+.service-feature .service-icon {
+    font-size: 3.5rem;
+    color: var(--primary-blue);
+    margin-bottom: 20px;
+    transition: all 0.4s ease;
+    position: relative;
+    display: inline-block;
+    padding: 15px;
+    border-radius: 50%;
+    background: rgba(0, 119, 190, 0.1); /* Light background for icon */
+    width: 80px; /* Added from inline style */
+    height: 80px; /* Added from inline style */
+    margin: 0 auto 25px; /* Added from inline style */
+    display: flex; /* Added from inline style */
+    align-items: center; /* Added from inline style */
+    justify-content: center; /* Added from inline style */
+}
+
+.service-feature:hover .service-icon {
+    color: var(--white);
+    background: var(--primary-blue);
+    box-shadow: 0 0 20px rgba(0, 119, 190, 0.6); /* Glowing effect */
+}
+
+.service-feature h3 {
+    font-size: 1.5rem; /* Adjusted from 1.2rem for better hierarchy */
+    color: var(--dark-blue);
+    margin-bottom: 15px;
+    font-weight: 600;
+    text-transform: uppercase; /* Added from inline style */
+}
+
+.service-feature p {
+    color: var(--medium-gray);
+    font-size: 0.95rem; /* Adjusted from 0.9rem */
+    line-height: 1.7;
+}
+
+
+/* =================================== */
+/*	About Section
+/* =================================== */
+
+#about {
+    background-color: #009EE3;
+    color: #fff;
+}
+
+#about h3 {
+    color: #fff;
+    margin: 0 0 35px;
+    text-transform: uppercase;
+}
+
+#about .welcome-block h3 {
+    margin: 0 0 65px;
+}
+
+#about .welcome-block img {
+    border: 3px solid #fff;
+    border-radius: 50%;
+    margin-right: 35px;
+    max-width: 100px;
+}
+
+#about .message-body {
+    font-size: 13px;
+    line-height: 20px;
+    margin-bottom: 70px;
+}
+
+.owl-buttons {
+    border: 2px solid #fff;
+    display: inline-block;
+    float: right;
+    padding: 1px 8px 5px;
+}
+
+.owl-buttons > div {
+    display: inline-block;
+    padding: 0 5px;
+}
+
+.welcome-message {
+    padding: 0 50px;
+}
+
+.welcome-message img {
+    display: block;
+    height: auto;
+    max-width: 100px;
+    float: left;
+}
+
+.welcome-message p {
+    font-size: 13px;
+    margin-left: 135px;
+}
+
+
+/* =================================== */
+/*	Price Section
+/* =================================== */
+
+#price {
+    padding: 100px 0;
+    background: white;
+}
+
+#price .sec-title h2 {
+    color: #333;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+#price .sec-title p {
+    color: #666;
+    font-size: 1.2rem;
+}
+
+.price-table {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    padding: 40px 30px;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 2px solid #e9ecef;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.price-table.featured {
+    border-color: #0077be;
+    transform: scale(1.05);
+    background: linear-gradient(135deg, #0077be, #00a8e6);
+    color: white;
+}
+
+/* ONLY ONE BEST SELLER BADGE - ONLY FOR FEATURED */
+.price-table.featured::before {
+    content: "Best Seller";
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #ff9800;
+    color: white;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    z-index: 10; /* Ensure it's above other elements */
+}
+
+/* Remove the best seller tag from non-featured price tables */
+.price-table:not(.featured)::before {
+    content: none; /* This removes the pseudo-element if it's not featured */
+}
+
+
+.price-table:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+.price-table.featured:hover {
+    transform: scale(1.05) translateY(-10px);
+}
+
+.price-table > span {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    display: block;
+}
+
+.price-table .value {
+    margin: 30px 0;
+}
+
+.price-table .value span:first-child {
+    font-size: 1.5rem;
+    vertical-align: top;
+}
+
+.price-table .value span:nth-child(2) {
+    font-size: 3.5rem;
+    font-weight: 700;
+}
+
+.price-table .value span:last-child {
+    font-size: 1rem;
+    opacity: 0.7;
+    display: block;
+    margin-top: 5px;
+}
+
+.price-table ul {
+    list-style: none;
+    padding: 0;
+    margin: 30px 0;
+}
+
+.price-table ul li {
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    font-size: 1rem;
+    border-top: none;
+}
+
+.price-table.featured ul li {
+    border-bottom-color: rgba(255,255,255,0.2);
+}
+
+.price-table ul li:last-child {
+    border-bottom: none;
+    padding-top: 20px;
+}
+
+.price-table ul li a {
+    background: #0077be;
+    color: white;
+    padding: 12px 30px;
+    border-radius: 5px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.price-table.featured ul li a {
+    background: white;
+    color: #0077be;
+}
+
+.price-table ul li a:hover {
+    background: #005a8b;
+    color: white;
+    text-decoration: none;
+}
+
+.price-table.featured ul li a:hover {
+    background: #f0f0f0;
+    color: #0077be;
+}
+
+/* =================================== */
+/*	Join Our Community Section
+/* =================================== */
+#join-community {
+    padding: 80px 0;
+    background: #f0f8ff; /* A very light blue background */
+    text-align: center;
+}
+
+#join-community .sec-title h2 {
+    color: var(--dark-blue); /* Ensure heading is dark blue */
+}
+
+#join-community .sec-title p {
+    color: var(--dark-gray); /* Ensure paragraph is dark gray */
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* =================================== */
+/*	Section Titles
+/* =================================== */
+
+.sec-title {
+    margin-bottom: 60px;
+    text-align: center;
+}
+
+.sec-title h2 {
+    font-size: 2.5rem;
+    margin: 0 0 20px;
+    position: relative;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--dark-blue);
+    letter-spacing: 1px;
+}
+
+.sec-title h2::after {
+    content: "";
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-blue), var(--secondary-blue));
+    border-radius: 2px;
+}
+
+.sec-title p {
+    font-size: 1.1rem;
+    color: var(--medium-gray);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.sec-title.white h2 {
+    color: var(--white);
+}
+
+.sec-title.white h2::after {
+    background: linear-gradient(90deg, var(--white), var(--accent-blue));
+}
+
+.sec-title.white p {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* =================================== */
+/*	Stats Section
+/* =================================== */
+
+#stats {
+    background: linear-gradient(135deg, #01579b, #0077be);
+    padding: 80px 0;
+    color: white;
+    text-align: center;
+}
+
+.stat-item {
+    margin-bottom: 30px;
+}
+
+.stat-number {
+    font-size: 3rem;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.stat-label {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* =================================== */
+/*	Footer
+/* =================================== */
+#footer {
+    background: linear-gradient(135deg, var(--dark-blue), var(--primary-blue));
+    padding: 60px 0 30px;
+    color: var(--white);
+    position: relative;
+}
+
+.footer-content {
+    position: relative;
+    z-index: 2;
+    /* This is where we will add text-align: center; */
+}
+
+.footer-content p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.footer-content a {
+    color: var(--accent-blue);
+    font-weight: 600;
+}
+
+.footer-content a:hover {
+    color: var(--white);
+}
+/* =================================== */
+/*	Container Fixes
+/* =================================== */
+
+.container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+@media (min-width: 1400px) {
+    .container {
+        max-width: 1320px;
+    }
+}
+
+/* =================================== */
+/*	Responsive Design
+/* =================================== */
+
+/* Large screens */
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1140px;
+    }
+}
+
+/* Medium screens */
+@media (min-width: 992px) and (max-width: 1199px) {
+    .caption-content h2 {
+        font-size: 3rem;
+    }
+
+    /* Adjust how-it-works items for medium screens */
+    #how-it-works .col-lg-4 {
+        flex: 0 0 50%; /* Two columns */
+        max-width: 50%;
+    }
+}
+
+/* Small screens */
+@media (min-width: 768px) and (max-width: 991px) {
+    .caption-content h2 {
+        font-size: 2.5rem;
+    }
+
+    .caption-content > span {
+        font-size: 1.2rem;
+    }
+
+    /* Adjust how-it-works items for small screens */
+    #how-it-works .col-md-6 {
+        flex: 0 0 50%; /* Two columns */
+        max-width: 50%;
+    }
+
+    .sec-title h2 {
+        font-size: 2rem;
+    }
+
+    .price-table.featured {
+        transform: none;
+    }
+}
+
+/* Extra small screens */
+@media (max-width: 767px) {
+    body {
+        font-size: 14px;
+    }
+
+    main > section {
+        padding: 60px 0;
+    }
+
+    .caption-content h2 {
+        font-size: 2rem;
+        margin-bottom: 20px;
+    }
+
+    .caption-content > span {
+        font-size: 1rem;
+        margin-bottom: 30px;
+    }
+
+    .caption-content p {
+        font-size: 1rem;
+        margin-bottom: 30px;
+    }
+
+    .sec-title h2 {
+        font-size: 1.8rem;
+    }
+
+    .sec-title h2::after {
+        width: 60px;
+    }
+
+    /* Adjust how-it-works items for extra small screens */
+    #how-it-works .col-md-6, #how-it-works .col-lg-4 {
+        flex: 0 0 100%; /* Single column */
+        max-width: 100%;
+    }
+
+    .price-table.featured {
+        transform: none;
+    }
+
+    #our-services, #how-it-works, #stats, #price, #join-community {
+        padding: 60px 0;
+    }
+
+    /* Adjust service item icons for smaller screens */
+    .service-feature { /* Renamed from .service-item-icon */
+        padding: 30px 15px;
+    }
+    .service-feature .service-icon {
+        font-size: 3rem;
+    }
+    .service-feature h3 {
+        font-size: 1.3rem;
+    }
+    .service-feature p {
+        font-size: 0.9rem;
+    }
+}
+
+/* Extra extra small screens */
+@media (max-width: 480px) {
+    .caption-content h2 {
+        font-size: 1.5rem;
+    }
+
+    .caption-content > span {
+        font-size: 0.9rem;
+    }
+
+    .sec-title h2 {
+        font-size: 1.5rem;
+    }
+}
+
+/* =================================== */
+/*	Utility Classes
+/* =================================== */
+
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.mt-1 { margin-top: 0.25rem; }
+.mt-2 { margin-top: 0.5rem; }
+.mt-3 { margin-top: 1rem; }
+.mt-4 { margin-top: 1.5rem; }
+.mt-5 { margin-top: 3rem; }
+
+.mb-1 { margin-bottom: 0.25rem; }
+.mb-2 { margin-bottom: 0.5rem; }
+.mb-3 { margin-bottom: 1rem; }
+.mb-4 { margin-bottom: 1.5rem; }
+.mb-5 { margin-bottom: 3rem; }
+
+.p-1 { padding: 0.25rem; }
+.p-2 { padding: 0.5rem; }
+.p-3 { padding: 1rem; }
+.p-4 { padding: 1.5rem; }
+.p-5 { padding: 3rem; }
+
+.d-none { display: none; }
+.d-block { display: block; }
+.d-inline { display: inline; }
+.d-inline-block { display: inline-block; }
+.d-flex { display: flex; }
+
+.justify-content-center { justify-content: center; }
+.justify-content-between { justify-content: space-between; }
+.align-items-center { align-items: center; }
+
+.w-100 { width: 100%; }
+.h-100 { height: 100%; }
+
+.rounded { border-radius: var(--border-radius); }
+.rounded-circle { border-radius: 50%; }
+
+.shadow { box-shadow: var(--shadow); }
+.shadow-hover { box-shadow: var(--shadow-hover); }

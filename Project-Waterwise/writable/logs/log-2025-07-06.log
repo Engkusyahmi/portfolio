@@ -1,0 +1,14 @@
+ERROR - 2025-07-06 06:22:47 --> mysqli_sql_exception: Duplicate entry '1-daily_login' for key 'user_task_unique' in /www/wwwroot/078730.unisza.work/GamingSmartWaterConsumption/system/Database/MySQLi/Connection.php:327
+Stack trace:
+#0 /www/wwwroot/078730.unisza.work/GamingSmartWaterConsumption/system/Database/MySQLi/Connection.php(327): mysqli->query()
+#1 /www/wwwroot/078730.unisza.work/GamingSmartWaterConsumption/system/Database/BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute()
+#2 /www/wwwroot/078730.unisza.work/GamingSmartWaterConsumption/system/Database/BaseConnection.php(652): CodeIgniter\Database\BaseConnection->simpleQuery()
+#3 /www/wwwroot/078730.unisza.work/GamingSmartWaterConsumption/system/Database/BaseBuilder.php(2345): CodeIgniter\Database\BaseConnection->query()
+#4 /www/wwwroot/078730.unisza.work/GamingSmartWaterConsumption/app/Controllers/User.php(128): CodeIgniter\Database\BaseBuilder->insert()
+#5 /www/wwwroot/078730.unisza.work/GamingSmartWaterConsumption/system/CodeIgniter.php(933): App\Controllers\User->claimDailyReward()
+#6 /www/wwwroot/078730.unisza.work/GamingSmartWaterConsumption/system/CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+#7 /www/wwwroot/078730.unisza.work/GamingSmartWaterConsumption/system/CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+#8 /www/wwwroot/078730.unisza.work/GamingSmartWaterConsumption/system/Boot.php(334): CodeIgniter\CodeIgniter->run()
+#9 /www/wwwroot/078730.unisza.work/GamingSmartWaterConsumption/system/Boot.php(67): CodeIgniter\Boot::runCodeIgniter()
+#10 /www/wwwroot/078730.unisza.work/GamingSmartWaterConsumption/public/index.php(54): CodeIgniter\Boot::bootWeb()
+#11 {main}

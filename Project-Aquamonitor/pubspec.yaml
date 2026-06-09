@@ -1,0 +1,38 @@
+name: aquamonitor
+description: "Smart Water Usage Monitoring System - AquaMonitor"
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.7.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # 1. Untuk sambung ke Database UniSZA (API PHP)
+  http: ^1.6.0
+
+  # 2. Untuk Graf di skrin Dashboard & Statistics
+  fl_chart: 0.65.0
+
+  # 3. Untuk format tarikh di skrin History
+  intl: ^0.19.0
+
+  # 4. Fungsi QR Scanner untuk Pair/Unpair Device
+  mobile_scanner: ^5.1.0
+
+  # 5. Icons untuk UI
+  cupertino_icons: ^1.0.8
+
+  # 6 Shared preferences
+  shared_preferences: ^2.3.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true
