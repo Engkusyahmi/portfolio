@@ -114,6 +114,7 @@
             <p class="section-desc text-center">A curation of production systems, cross-platform mobile apps, and frameworks engineered throughout my academic tenure.</p>
             
             <div class="projects-grid">
+                <!-- PROJECT 1: AquaMonitor (1.png - 14.png) -->
                 <div class="project-card">
                     <span class="tag">Final Year Project</span>
                     <h4>AquaMonitor</h4>
@@ -123,15 +124,16 @@
                         <span>Flutter</span><span>PHP API</span><span>MySQL</span><span>ESP32</span>
                     </div>
                     <div class="project-links-group">
-                        <a href="https://github.com/Engkusyahmi" target="_blank" rel="noopener" class="project-git-link">
+                        <a href="https://github.com/Engkusyahmi/AquaMonitor" target="_blank" rel="noopener" class="project-git-link">
                             <i class="fa-brands fa-github"></i> Source Code
                         </a>
-                        <button onclick="openModal(['images/AquaMonitor_Preview.jpg', 'images/AquaMonitor_Dashboard.jpg', 'images/AquaMonitor_Chat.jpg'], 'AquaMonitor Mobile App Interface')" class="project-demo-link">
+                        <button onclick="openModal(['images/1.png', 'images/2.png', 'images/3.png', 'images/4.png', 'images/5.png', 'images/6.png', 'images/7.png', 'images/8.png', 'images/9.png', 'images/10.png', 'images/11.png', 'images/12.png', 'images/13.png', 'images/14.png'], 'AquaMonitor Mobile App Interface')" class="project-demo-link">
                             <i class="fa-solid fa-mobile-screen"></i> View Preview
                         </button>
                     </div>
                 </div>
 
+                <!-- PROJECT 2: Saku Legacy -->
                 <div class="project-card">
                     <span class="tag">Individual Project</span>
                     <h4>Saku Legacy</h4>
@@ -141,7 +143,7 @@
                         <span>Flutter Web</span><span>Dart</span><span>Android Studio</span>
                     </div>
                     <div class="project-links-group">
-                        <a href="https://github.com/Engkusyahmi" target="_blank" rel="noopener" class="project-git-link">
+                        <a href="https://github.com/Engkusyahmi/SakuLegacy" target="_blank" rel="noopener" class="project-git-link">
                             <i class="fa-brands fa-github"></i> Source Code
                         </a>
                         <button onclick="openModal(['images/SakuLegacy_Preview.jpg'], 'Saku Legacy Interface')" class="project-demo-link">
@@ -150,6 +152,7 @@
                     </div>
                 </div>
 
+                <!-- PROJECT 3: Drive N Rent -->
                 <div class="project-card">
                     <span class="tag">Group Project</span>
                     <h4>Drive N Rent</h4>
@@ -159,15 +162,16 @@
                         <span>PHP</span><span>MySQL</span><span>Bootstrap</span><span>XAMPP</span>
                     </div>
                     <div class="project-links-group">
-                        <a href="https://github.com/Engkusyahmi" target="_blank" rel="noopener" class="project-git-link">
+                        <a href="https://github.com/Engkusyahmi/DrivenRent" target="_blank" rel="noopener" class="project-git-link">
                             <i class="fa-brands fa-github"></i> Source Code
                         </a>
-                        <a href="https://drivenrent.unisza.work" target="_blank" rel="noopener" class="project-demo-link web-link">
+                        <a href="https://drivenrent.unisza.work/Main/" target="_blank" rel="noopener" class="project-demo-link web-link">
                             <i class="fa-solid fa-globe"></i> Live Website
                         </a>
                     </div>
                 </div>
 
+                <!-- PROJECT 4: WaterWise -->
                 <div class="project-card">
                     <span class="tag">Individual Project</span>
                     <h4>WaterWise</h4>
@@ -177,10 +181,10 @@
                         <span>CodeIgniter 4</span><span>MVC Pattern</span><span>MySQL</span>
                     </div>
                     <div class="project-links-group">
-                        <a href="https://github.com/Engkusyahmi" target="_blank" rel="noopener" class="project-git-link">
+                        <a href="https://github.com/Engkusyahmi/WaterWise" target="_blank" rel="noopener" class="project-git-link">
                             <i class="fa-brands fa-github"></i> Source Code
                         </a>
-                        <a href="https://078730.unisza.work" target="_blank" rel="noopener" class="project-demo-link web-link">
+                        <a href="https://078730.unisza.work/GamingSmartWaterConsumption/" target="_blank" rel="noopener" class="project-demo-link web-link">
                             <i class="fa-solid fa-globe"></i> Live Website
                         </a>
                     </div>
@@ -189,6 +193,7 @@
         </div>
     </section>
 
+    <!-- IMAGE PREVIEW MODAL -->
     <div id="imageModal" class="modal-overlay" onclick="closeModal()">
         <span class="modal-close" onclick="closeModal()">&times;</span>
         
@@ -259,9 +264,10 @@
                     <p>github.com/Engkusyahmi</p>
                 </a>
 
-                <a href="tel:0199595966" class="contact-box">
-                    <i class="fa-solid fa-phone"></i>
-                    <h4>Call / WhatsApp</h4>
+                <!-- KEMASKINI: Ditukar khas untuk WhatsApp sahaja dengan pautan direct API -->
+                <a href="https://wa.me/60199595966" target="_blank" rel="noopener" class="contact-box">
+                    <i class="fa-brands fa-whatsapp"></i>
+                    <h4>WhatsApp Me</h4>
                     <p>019-959 5966</p>
                 </a>
             </div>
@@ -319,7 +325,7 @@
             }
         });
 
-        /* --- 3. ADVANCED MODAL SLIDER CONTROLLER (Boleh letak satu atau banyak gambar) --- */
+        /* --- 3. ADVANCED MODAL SLIDER CONTROLLER --- */
         let currentImages = [];
         let currentImgIndex = 0;
         let baseTitle = "";
@@ -333,7 +339,6 @@
             const arrowLeft = modal.querySelector('.arrow-left');
             const arrowRight = modal.querySelector('.arrow-right');
 
-            // Kalau gambar ada 1 sahaja, sembunyikan butang anak panah slide
             if (currentImages.length <= 1) {
                 arrowLeft.style.display = "none";
                 arrowRight.style.display = "none";
@@ -352,7 +357,6 @@
             
             modalImg.src = currentImages[currentImgIndex];
             
-            // Paparkan kapsyen beserta status halaman slider (contoh: AquaMonitor Preview - 1/3)
             if (currentImages.length > 1) {
                 modalCaption.innerText = `${baseTitle} (${currentImgIndex + 1}/${currentImages.length})`;
             } else {
@@ -363,7 +367,6 @@
         function changeSlide(direction) {
             currentImgIndex += direction;
             
-            // Loop balik ke asal kalau dah habis pusingan gambar
             if (currentImgIndex >= currentImages.length) {
                 currentImgIndex = 0;
             } else if (currentImgIndex < 0) {
