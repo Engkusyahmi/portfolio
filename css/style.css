@@ -1,4 +1,6 @@
-/* --- 1. THEME TOKENS & DESIGN SYSTEM --- */
+/* ==========================================================================
+   1. DESIGN SYSTEM & THEME TOKENS
+   ========================================================================== */
 :root {
     --primary-color: #0284c7;
     --primary-hover: #0369a1;
@@ -25,7 +27,9 @@ body.dark-mode {
     --border-color: #334155;
 }
 
-/* --- 2. BASE RESET & GLOBAL LAYOUTS --- */
+/* ==========================================================================
+   2. GLOBAL BASE RESET & UTILITIES
+   ========================================================================== */
 * {
     margin: 0;
     padding: 0;
@@ -48,12 +52,14 @@ body {
 }
 
 .text-center { text-align: center; }
+
 .section-title {
     font-size: 2.25rem;
     font-weight: 800;
     margin-bottom: 1rem;
     letter-spacing: -0.025em;
 }
+
 .section-desc {
     color: var(--text-muted);
     max-width: 600px;
@@ -61,7 +67,9 @@ body {
     font-size: 1.1rem;
 }
 
-/* --- 3. FIXED HEADER & NAVIGATION --- */
+/* ==========================================================================
+   3. NAVIGATION HEADER
+   ========================================================================== */
 header {
     position: fixed;
     top: 0;
@@ -138,7 +146,9 @@ nav a:hover { color: var(--primary-color); }
 .nav-toggle { display: none; }
 .nav-toggle-label { display: none; }
 
-/* --- 4. HERO SECTION --- */
+/* ==========================================================================
+   4. HERO SECTION
+   ========================================================================== */
 .hero {
     position: relative;
     z-index: 1;
@@ -220,7 +230,9 @@ nav a:hover { color: var(--primary-color); }
 }
 .btn.secondary:hover { background-color: var(--border-color); }
 
-/* --- 5. ABOUT & TIMELINE --- */
+/* ==========================================================================
+   5. ABOUT SECTION & TIMELINE
+   ========================================================================== */
 .about-grid {
     display: grid;
     grid-template-columns: 1fr 1.2fr;
@@ -300,7 +312,9 @@ nav a:hover { color: var(--primary-color); }
     margin-top: 0.25rem;
 }
 
-/* --- 6. WORKING EXPERIENCES --- */
+/* ==========================================================================
+   6. WORKING EXPERIENCES
+   ========================================================================== */
 .exp-card {
     background-color: var(--bg-card);
     border: 1px solid var(--border-color);
@@ -336,7 +350,9 @@ nav a:hover { color: var(--primary-color); }
     font-weight: bold;
 }
 
-/* --- 7. FEATURED PROJECTS --- */
+/* ==========================================================================
+   7. FEATURED PROJECTS GRID & BADGES
+   ========================================================================== */
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -359,22 +375,164 @@ nav a:hover { color: var(--primary-color); }
     border-color: var(--primary-color);
 }
 
+.project-tags-header {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
 .tag {
-    align-self: flex-start;
     background-color: rgba(30, 41, 59, 0.05);
     color: var(--text-main);
     font-size: 0.75rem;
     font-weight: 700;
     padding: 0.3rem 0.75rem;
     border-radius: 30px;
-    margin-bottom: 1rem;
 }
 body.dark-mode .tag { background-color: rgba(241, 245, 249, 0.1); }
+
+.tag-distributed {
+    background-color: rgba(37, 99, 235, 0.1) !important;
+    color: #2563eb !important;
+}
+.tag-gamification {
+    background-color: rgba(16, 185, 129, 0.1) !important;
+    color: #10b981 !important;
+}
+
+.tag-award {
+    background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 50%, #94a3b8 100%);
+    color: #1e293b;
+    font-size: 0.75rem;
+    font-weight: 800;
+    padding: 0.35rem 0.85rem;
+    border-radius: 30px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border: 1px solid #94a3b8;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.tag-award i {
+    color: #64748b;
+    text-shadow: 0 1px 1px rgba(255,255,255,0.8);
+}
+body.dark-mode .tag-award {
+    background: linear-gradient(135deg, #334155 0%, #475569 50%, #1e293b 100%);
+    color: #f8fafc;
+    border-color: #475569;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+body.dark-mode .tag-award i { color: #cbd5e1; text-shadow: none; }
 
 .project-card h4 { font-size: 1.4rem; font-weight: 800; margin-bottom: 0.25rem; }
 .project-subtitle { color: var(--primary-color); font-weight: 600; font-size: 0.95rem; margin-bottom: 1rem; }
 .project-card p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem; flex-grow: 1; }
 
+/* --- ARCHITECTURE BOX STYLING (INFRASTRUCTURE SPECS) --- */
+.architecture-box {
+    margin: 16px 0;
+    padding: 14px 16px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    text-align: left;
+}
+.architecture-box h4 {
+    margin-top: 0;
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: bold;
+}
+.architecture-box ul {
+    margin: 0;
+    padding-left: 20px;
+    list-style-type: disc;
+}
+.architecture-box li { margin-bottom: 6px; }
+
+/* Architecture Box Themes */
+.blueprint-theme {
+    background-color: #eff6ff;
+    border-left: 4px solid #2563eb;
+    color: #1e3a8a;
+}
+.blueprint-theme h4 { color: #2563eb; }
+body.dark-mode .blueprint-theme {
+    background-color: rgba(37, 99, 235, 0.1);
+    color: #bfdbfe;
+}
+
+.gaming-theme {
+    background-color: #ecfdf5;
+    border-left: 4px solid #10b981;
+    color: #065f46;
+}
+.gaming-theme h4 { color: #10b981; }
+body.dark-mode .gaming-theme {
+    background-color: rgba(16, 185, 129, 0.1);
+    color: #a7f3d0;
+}
+
+.telegram-theme {
+    background-color: #f0f9ff;
+    border-left: 4px solid #0284c7;
+    color: #075985;
+}
+.telegram-theme h4 { color: #0284c7; }
+body.dark-mode .telegram-theme {
+    background-color: rgba(2, 132, 199, 0.1);
+    color: #bae6fd;
+}
+
+/* --- DEMO CREDENTIALS BOX STYLING --- */
+.demo-credentials-box {
+    background-color: #f8fafc;
+    border-left: 4px solid #64748b;
+    padding: 12px 14px;
+    margin: 16px 0;
+    border-radius: 8px;
+    font-size: 0.88rem;
+    text-align: left;
+    color: var(--text-main);
+}
+.demo-credentials-box h4 {
+    margin-top: 0;
+    margin-bottom: 6px;
+    color: #475569;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+body.dark-mode .demo-credentials-box {
+    background-color: #334155;
+    border-left-color: #94a3b8;
+}
+body.dark-mode .demo-credentials-box h4 { color: #cbd5e1; }
+
+/* --- TELEMETRY / NOTICE BOX STYLING --- */
+.telemetry-notice-box {
+    background-color: #fef2f2;
+    border-left: 4px solid #ef4444;
+    padding: 12px 14px;
+    margin: 16px 0;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    color: #991b1b;
+    line-height: 1.4;
+    text-align: left;
+}
+body.dark-mode .telemetry-notice-box {
+    background-color: rgba(239, 68, 68, 0.1);
+    color: #fca5a5;
+}
+
+/* --- INTERACTIVE ACTION BUTTONS --- */
 .tech-tags {
     display: flex;
     flex-wrap: wrap;
@@ -395,7 +553,6 @@ body.dark-mode .tag { background-color: rgba(241, 245, 249, 0.1); }
     grid-template-columns: 1fr 1fr;
     gap: 0.75rem;
 }
-
 .project-links-group a, .project-links-group button {
     display: flex;
     align-items: center;
@@ -424,28 +581,10 @@ body.dark-mode .tag { background-color: rgba(241, 245, 249, 0.1); }
 }
 .project-demo-link:hover { background-color: var(--primary-hover); }
 
-.tag-award {
-    background-color: #e2e8f0; /* Silver color */
-    color: #475569;
-    font-size: 0.75rem;
-    font-weight: 800;
-    padding: 0.3rem 0.75rem;
-    border-radius: 30px;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    border: 1px solid #cbd5e1;
-}
-
-/* Style tambahan kalau nak nampak lebih 'shiny' sikit */
-body.dark-mode .tag-award {
-    background-color: #334155;
-    color: #f1f5f9;
-    border-color: #475569;
-}
-
-/* --- 8. PREVIEW MODAL --- */
-.modal-overlay {
+/* ==========================================================================
+   8. MEDIA PREVIEW MODAL
+   ========================================================================== */
+.imageModal, .modal-overlay {
     display: none;
     position: fixed;
     top: 0;
@@ -475,6 +614,19 @@ body.dark-mode .tag-award {
     object-fit: contain;
     border-radius: var(--radius-md);
     box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+}
+
+#videoContainer {
+    width: 100%;
+    aspect-ratio: 16/9;
+    max-width: 800px;
+    display: none;
+}
+#videoContainer iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: var(--radius-md);
 }
 
 .slider-arrow {
@@ -514,9 +666,12 @@ body.dark-mode .tag-award {
     margin-top: 1.5rem;
     font-weight: 600;
     font-size: 1.1rem;
+    text-align: center;
 }
 
-/* --- 9. TECHNICAL SKILLS --- */
+/* ==========================================================================
+   9. TECHNICAL EXPERTISE CARDS
+   ========================================================================== */
 .skills-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -541,7 +696,9 @@ body.dark-mode .tag-award {
 .skill-card h4 { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.5rem; }
 .skill-card p { color: var(--text-muted); font-size: 0.95rem; }
 
-/* --- 10. CONTACT --- */
+/* ==========================================================================
+   10. CONTACT NODES
+   ========================================================================== */
 .contact-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -568,7 +725,9 @@ body.dark-mode .tag-award {
 .contact-box h4 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.25rem; }
 .contact-box p { color: var(--text-muted); font-size: 0.9rem; }
 
-/* --- 11. FOOTER --- */
+/* ==========================================================================
+   11. FOOTER PIPELINES
+   ========================================================================== */
 footer {
     border-top: 1px solid var(--border-color);
     padding: 2rem;
@@ -577,12 +736,15 @@ footer {
     font-size: 0.9rem;
 }
 
-/* --- 12. RESPONSIVE BREAKPOINTS (MOBILE OVERLAY SYSTEM) --- */
+/* ==========================================================================
+   12. RESPONSIVE BREAKPOINTS & RESPONSIVE VIEWPORT ENGINE
+   ========================================================================== */
 @media (max-width: 992px) {
     .about-grid { grid-template-columns: 1fr; gap: 3rem; }
     .about-img-container { max-width: 400px; margin: 0 auto; }
     .arrow-left { left: 10px; }
     .arrow-right { right: 10px; }
+    .modal-slider-wrapper { max-width: 80%; }
 }
 
 @media (max-width: 768px) {
@@ -594,7 +756,7 @@ footer {
     .nav-toggle-label {
         display: block;
         position: relative;
-        z-index: 100000;
+        z-index: 10000 !important;
         width: 30px;
         height: 30px;
         cursor: pointer;
@@ -613,69 +775,6 @@ footer {
     .nav-toggle-label span::before { top: -8px; }
     .nav-toggle-label span::after { top: 8px; }
 
-    nav {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        width: 100%;
-        height: 100vh;
-        background-color: var(--bg-card);
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 2.5rem;
-        z-index: 99999;
-        transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        box-shadow: -10px 0 30px rgba(0,0,0,0.1);
-    }
-
-    nav a { font-size: 1.3rem; font-weight: 700; }
-    .nav-btn { width: 80%; text-align: center; padding: 0.8rem; }
-
-    .nav-toggle:checked ~ .nav-toggle-label span { background-color: transparent; }
-    .nav-toggle:checked ~ .nav-toggle-label span::before { transform: rotate(45deg); top: 0; }
-    .nav-toggle:checked ~ .nav-toggle-label span::after { transform: rotate(-45deg); top: 0; }
-    
-    .nav-toggle:checked ~ nav {
-        right: 0;
-    }
-    /* --- AMENDMENT FOR SILVER AWARD BADGE --- */
-.tag-award {
-    background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 50%, #94a3b8 100%);
-    color: #1e293b;
-    font-size: 0.75rem;
-    font-weight: 800;
-    padding: 0.35rem 0.85rem;
-    border-radius: 30px;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    border: 1px solid #94a3b8;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.tag-award i {
-    color: #64748b;
-    text-shadow: 0 1px 1px rgba(255,255,255,0.8);
-}
-
-/* Dark Mode Adaptation */
-body.dark-mode .tag-award {
-    background: linear-gradient(135deg, #334155 0%, #475569 50%, #1e293b 100%);
-    color: #f8fafc;
-    border-color: #475569;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-}
-
-body.dark-mode .tag-award i {
-    color: #cbd5e1;
-    text-shadow: none;
-}
-
-/*MOBILE OVERLAY OVERLAPPING */
-@media (max-width: 768px) {
     .nav-right-wrapper nav {
         position: fixed;
         top: 0;
@@ -686,19 +785,38 @@ body.dark-mode .tag-award i {
         box-shadow: -5px 0 15px rgba(0, 0, 0, 0.25);
         display: flex;
         flex-direction: column;
+        justify-content: flex-start;
         padding: 80px 30px;
         gap: 20px;
         transition: right 0.4s ease;
         z-index: 9999;
     }
+
     body.dark-mode .nav-right-wrapper nav {
         background-color: #0f172a;
     }
+
+    nav a { 
+        font-size: 1.2rem; 
+        font-weight: 700; 
+        color: #ffffff !important;
+        width: 100%;
+        padding: 10px 0;
+    }
+    nav a:hover { color: var(--primary-color) !important; }
+
+    .nav-btn { 
+        width: 100%; 
+        text-align: center; 
+        padding: 0.8rem; 
+        background-color: var(--primary-color) !important;
+    }
+
     .nav-toggle:checked ~ nav {
         right: 0 !important;
     }
-    .nav-toggle-label {
-        z-index: 10000 !important;
-    }
-}
+
+    .nav-toggle:checked ~ .nav-toggle-label span { background-color: transparent; }
+    .nav-toggle:checked ~ .nav-toggle-label span::before { transform: rotate(45deg); top: 0; background-color: #ffffff; }
+    .nav-toggle:checked ~ .nav-toggle-label span::after { transform: rotate(-45deg); top: 0; background-color: #ffffff; }
 }
