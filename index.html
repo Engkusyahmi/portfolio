@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* CSS FIX FOR MOBILE OVERLAY OVERLAPPING (Screenshot 2026-06-10 001838.png) */
+        /* CSS FIX FOR MOBILE OVERLAY OVERLAPPING */
         @media (max-width: 768px) {
             .nav-right-wrapper nav {
                 position: fixed;
@@ -15,14 +15,14 @@
                 right: -100%;
                 width: 280px;
                 height: 100vh;
-                background-color: #1e293b; /* Solid dark background to block out background hero text */
+                background-color: #1e293b;
                 box-shadow: -5px 0 15px rgba(0, 0, 0, 0.25);
                 display: flex;
                 flex-direction: column;
                 padding: 80px 30px;
                 gap: 20px;
                 transition: right 0.4s ease;
-                z-index: 9999; /* Higher priority layer stack execution */
+                z-index: 9999;
             }
             body.dark-mode .nav-right-wrapper nav {
                 background-color: #0f172a;
@@ -187,6 +187,13 @@
                     <h4>WaterWise</h4>
                     <p class="project-subtitle">Gamification Smart Water Website</p>
                     <p>A web-based behavioral tracking gamification system built over a Model-View-Controller (MVC) architecture using CodeIgniter 4. Integrated an internal XP structure, user progression achievements, daily logs, and statistical metrics screens.</p>
+                    
+                    <div class="demo-credentials-box" style="background-color: rgba(148, 163, 184, 0.1); border-left: 4px solid #94a3b8; padding: 10px; margin: 12px 0; border-radius: 4px; font-size: 0.85rem; color: inherit;">
+                        <strong style="display: block; margin-bottom: 4px; color: #64748b;"><i class="fa-solid fa-key"></i> Try Demo Account Login:</strong>
+                        <span style="display: block;"><strong>Username:</strong> syah</span>
+                        <span style="display: block;"><strong>Password:</strong> 1234</span>
+                    </div>
+
                     <div class="tech-tags">
                         <span>CodeIgniter 4</span><span>MVC Pattern</span><span>MySQL</span>
                     </div>
@@ -223,6 +230,13 @@
                     <h4>Drive N Rent</h4>
                     <p class="project-subtitle">Car Rental System</p>
                     <p>Comprehensive enterprise vehicle management deployment. Assumed responsibilities for core module functional validation, executing debugging procedures across team units, and optimizing relational data pipelines on Apache server profiles.</p>
+                    
+                    <div class="demo-credentials-box" style="background-color: rgba(148, 163, 184, 0.1); border-left: 4px solid #94a3b8; padding: 10px; margin: 12px 0; border-radius: 4px; font-size: 0.85rem; color: inherit;">
+                        <strong style="display: block; margin-bottom: 4px; color: #64748b;"><i class="fa-solid fa-key"></i> Try Demo Account Logins:</strong>
+                        <span style="display: block; margin-bottom: 2px;"><strong>Renter User:</strong> danish / Danish123</span>
+                        <span style="display: block;"><strong>Car Owner:</strong> siti / Siti123</span>
+                    </div>
+
                     <div class="tech-tags">
                         <span>PHP</span><span>MySQL</span><span>Bootstrap</span><span>XAMPP</span>
                     </div>
@@ -362,13 +376,11 @@
         let currentImages = [];
         let currentImgIndex = 0;
         let baseTitle = "";
-        let fallbackAttempted = false;
 
         function openModal(imgArray, projectTitle = "Preview") {
             currentImages = Array.isArray(imgArray) ? imgArray : [imgArray];
             currentImgIndex = 0;
             baseTitle = projectTitle;
-            fallbackAttempted = false;
 
             const modal = document.getElementById('imageModal');
             const arrowLeft = modal.querySelector('.arrow-left');
@@ -392,13 +404,11 @@
         function updateModalImage() {
             const modalImg = document.getElementById('modalTargetImg');
             const modalCaption = document.getElementById('modalCaption');
-            fallbackAttempted = false; 
             
             modalImg.src = currentImages[currentImgIndex];
             
             if (currentImages.length > 1) {
                 let categoryLabel = "Mobile App Interface";
-                // Explicitly intercept indices 0 and 1 for IoT Hardware Setup text mappings
                 if (baseTitle.includes("AquaMonitor")) {
                     if (currentImgIndex === 0 || currentImgIndex === 1) {
                         categoryLabel = "IoT Hardware Setup";
@@ -409,18 +419,6 @@
                 modalCaption.innerText = baseTitle;
             }
         }
-
-        // Silent global extension patch tool listener logic
-        document.getElementById('modalTargetImg').addEventListener('error', function() {
-            if (!fallbackAttempted) {
-                fallbackAttempted = true;
-                let currentSrc = this.src;
-                if (currentSrc.endsWith('.jpg')) { this.src = currentSrc.replace('.jpg', '.JPG'); }
-                else if (currentSrc.endsWith('.JPG')) { this.src = currentSrc.replace('.JPG', '.jpg'); }
-                else if (currentSrc.endsWith('.png')) { this.src = currentSrc.replace('.png', '.PNG'); }
-                else if (currentSrc.endsWith('.PNG')) { this.src = currentSrc.replace('.PNG', '.png'); }
-            }
-        });
 
         function openVideoModal(videoId, projectTitle = "Video Demo") {
             const modal = document.getElementById('imageModal');
