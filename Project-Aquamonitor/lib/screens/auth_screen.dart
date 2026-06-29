@@ -31,9 +31,10 @@ class _AuthScreenState extends State<AuthScreen> with SingleTickerProviderStateM
     _tabController = TabController(length: 2, vsync: this);
   }
 
+  // UPDATE: Login function with device status validation (Active / Inactive)
   Future<void> loginUser() async {
     if (loginEmailController.text.isEmpty || loginPasswordController.text.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Sila isi semua ruangan")));
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Please fill in all fields")));
       return;
     }
 
@@ -52,10 +53,12 @@ class _AuthScreenState extends State<AuthScreen> with SingleTickerProviderStateM
         var userData = data['user'];
         String role = userData['role']?.toString().toLowerCase() ?? 'user';
 
+        // UPDATE: Fetch device status (Active / Inactive)
+        String deviceStatus = userData['device_status']?.toString() ?? 'Inactive';
+
         if (!mounted) return;
 
         if (role == 'admin') {
-          // UPDATE: Hantar data userId, fullname, dan email ke Admin Dashboard
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
@@ -67,16 +70,22 @@ class _AuthScreenState extends State<AuthScreen> with SingleTickerProviderStateM
             ),
           );
         } else {
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (context) => MainWrapper(
-                userId: userData['id'].toString(),
-                fullname: userData['fullname'] ?? "User",
-                deviceId: userData['device_id']?.toString() ?? "",
+          // UPDATE: Admin approval restriction based on device status
+          if (deviceStatus == 'Active') {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => MainWrapper(
+                  userId: userData['id'].toString(),
+                  fullname: userData['fullname'] ?? "User",
+                  deviceId: userData['device_id']?.toString() ?? "",
+                ),
               ),
-            ),
-          );
+            );
+          } else {
+            // If status is Inactive, show the pending admin approval popup
+            _showPendingApprovalDialog(userData['device_id']?.toString() ?? "Not Registered");
+          }
         }
       } else {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(data['message'])));
@@ -86,6 +95,30 @@ class _AuthScreenState extends State<AuthScreen> with SingleTickerProviderStateM
     } finally {
       if (mounted) setState(() => _isLoading = false);
     }
+  }
+
+  // UPDATE: Helper function to display the restriction popup dialog
+  void _showPendingApprovalDialog(String deviceId) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+        title: Row(
+          children: const [
+            Icon(Icons.lock_clock, color: Colors.orange),
+            SizedBox(width: 10),
+            Text("Account Not Active", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+          ],
+        ),
+        content: Text("Your device ($deviceId) is currently awaiting activation approval from the Admin."),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text("OK"),
+          )
+        ],
+      ),
+    );
   }
 
   Future<void> registerUser() async {
@@ -108,10 +141,10 @@ class _AuthScreenState extends State<AuthScreen> with SingleTickerProviderStateM
       var data = json.decode(response.body);
 
       if (data['status'] == "success") {
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Berjaya Daftar! Silalah Login.")));
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Registration successful! Please login.")));
         _tabController.animateTo(0);
       } else {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Gagal: ${data['message']}")));
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Failed: ${data['message']}")));
       }
     } catch (e) {
       print("Error: $e");
@@ -127,11 +160,39 @@ class _AuthScreenState extends State<AuthScreen> with SingleTickerProviderStateM
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const SizedBox(height: 70),
-            const Icon(Icons.water_drop, size: 80, color: Colors.blue),
+            const SizedBox(height: 60),
+
+            // KEMASKINI: Ditambah Container bulat + ClipOval + BoxFit.cover untuk membaiki isu logo kecil & berpixel
+            Container(
+              padding: const EdgeInsets.all(4),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                shape: BoxShape.circle,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.1),
+                    blurRadius: 10,
+                    offset: const Offset(0, 4),
+                  ),
+                ],
+              ),
+              child: ClipOval(
+                child: Image.asset(
+                  'assets/logo.png',
+                  height: 120,
+                  width: 120,
+                  fit: BoxFit.cover,
+                  errorBuilder: (context, error, stackTrace) {
+                    return const Icon(Icons.water_drop, size: 80, color: Colors.blue);
+                  },
+                ),
+              ),
+            ),
+            const SizedBox(height: 15),
+
             const Text("AquaMonitor", style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: Color(0xFF003366))),
             const Text("Smart Water Management", style: TextStyle(color: Colors.blueGrey)),
-            const SizedBox(height: 40),
+            const SizedBox(height: 30),
 
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 25),

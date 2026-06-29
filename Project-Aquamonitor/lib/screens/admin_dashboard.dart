@@ -21,7 +21,7 @@ class AdminDashboard extends StatefulWidget {
 }
 
 class _AdminDashboardState extends State<AdminDashboard> {
-  // 1. Ambil data dari PHP
+  // 1. Ambil data utama daripada PHP API
   Future<Map<String, dynamic>> fetchAdminData() async {
     try {
       var res = await http.get(
@@ -36,6 +36,31 @@ class _AdminDashboardState extends State<AdminDashboard> {
       }
     } catch (e) {
       throw Exception("Connection error: $e");
+    }
+  }
+
+  // Fungsi untuk menukar status aktif peranti (Active / Inactive) secara manual
+  Future<void> _toggleDeviceStatus(String userId, String currentStatus) async {
+    String newStatus = (currentStatus == 'Active') ? 'Inactive' : 'Active';
+    try {
+      var response = await http.post(
+        Uri.parse('https://078730.unisza.work/webapp/api/admin_manage_user.php'),
+        headers: {"Content-Type": "application/x-www-form-urlencoded"},
+        body: {
+          "action": "update_status",
+          "user_id": userId,
+          "device_status": newStatus,
+        },
+      );
+      if (response.statusCode == 200) {
+        setState(() {}); // Segarkan UI
+        if (!mounted) return;
+        ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(backgroundColor: Colors.green, content: Text("Status berjaya ditukar kepada $newStatus!"))
+        );
+      }
+    } catch (e) {
+      debugPrint("Toggle Status Error: $e");
     }
   }
 
@@ -55,7 +80,7 @@ class _AdminDashboardState extends State<AdminDashboard> {
         },
       );
       if (response.statusCode == 200) {
-        setState(() {}); // Refresh UI
+        setState(() {});
         if (!mounted) return;
         ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(backgroundColor: Colors.green, content: Text("Category Rule $action successful!"))
@@ -222,25 +247,34 @@ class _AdminDashboardState extends State<AdminDashboard> {
   }
 
   // ---------------------------------------------------------
-  // SECTION: USER MANAGEMENT FUNCTIONS
+  // SECTION: USER MANAGEMENT FUNCTIONS WITH AUTO-VERIFY (DIBAIKI)
   // ---------------------------------------------------------
 
   void _showEditUserDialog(Map user) {
-    final deviceController = TextEditingController(text: user['device_id']);
+    // Pastikan tulisan "No Device" dibersihkan supaya tidak dihantar ke database secara tersilap
+    String currentDevice = user['device_id']?.toString() ?? "";
+    if (currentDevice == "No Device") currentDevice = "";
+
+    final deviceController = TextEditingController(text: currentDevice);
+
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-        title: Text("Edit Device for ${user['fullname']}"),
+        title: Text("Verify & Bind Device for ${user['fullname']}"),
         content: Column(
           mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text("Update hardware ID for this user:", style: TextStyle(fontSize: 12, color: Colors.grey)),
+            const Text(
+                "Masukkan ID perkakasan IoT (Device ID) bagi pengguna ini. Proses ini akan mengaktifkan akaun mereka secara automatik.",
+                style: TextStyle(fontSize: 12, color: Colors.grey)
+            ),
             const SizedBox(height: 15),
             TextField(
               controller: deviceController,
               decoration: const InputDecoration(
-                labelText: "Device ID",
+                labelText: "Device ID (e.g., ESP-WASH-01)",
                 border: OutlineInputBorder(),
                 prefixIcon: Icon(Icons.router),
               ),
@@ -250,24 +284,72 @@ class _AdminDashboardState extends State<AdminDashboard> {
         actions: [
           TextButton(onPressed: () => Navigator.pop(context), child: const Text("Cancel")),
           ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: const Color(0xFF003366),
+              foregroundColor: Colors.white,
+            ),
             onPressed: () async {
-              var response = await http.post(
-                Uri.parse('https://078730.unisza.work/webapp/api/admin_manage_user.php'),
-                headers: {"Content-Type": "application/x-www-form-urlencoded"},
-                body: {
-                  "action": "update",
-                  "user_id": user['id'].toString(),
-                  "device_id": deviceController.text.trim(),
-                },
-              );
-              if (response.statusCode == 200) {
+              String inputDeviceId = deviceController.text.trim();
+
+              if (inputDeviceId.isEmpty) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(backgroundColor: Colors.red, content: Text("Device ID tidak boleh dibiarkan kosong!"))
+                );
+                return;
+              }
+
+              try {
+                debugPrint("Mencuba bind user_id: ${user['id']} dengan device_id: $inputDeviceId");
+
+                // Langkah 1: Pautkan ID Peranti kepada pengguna (Action: Update)
+                var response = await http.post(
+                  Uri.parse('https://078730.unisza.work/webapp/api/admin_manage_user.php'),
+                  headers: {"Content-Type": "application/x-www-form-urlencoded"},
+                  body: {
+                    "action": "update",
+                    "user_id": user['id'].toString(),
+                    "device_id": inputDeviceId,
+                  },
+                ).timeout(const Duration(seconds: 10));
+
+                debugPrint("Respon Langkah 1 (Status: ${response.statusCode}): ${response.body}");
+
+                if (response.statusCode == 200) {
+                  // Langkah 2: Kemaskini status peranti menjadi 'Active' secara automatik
+                  var responseStatus = await http.post(
+                    Uri.parse('https://078730.unisza.work/webapp/api/admin_manage_user.php'),
+                    headers: {"Content-Type": "application/x-www-form-urlencoded"},
+                    body: {
+                      "action": "update_status",
+                      "user_id": user['id'].toString(),
+                      "device_status": "Active",
+                    },
+                  ).timeout(const Duration(seconds: 10));
+
+                  debugPrint("Respon Langkah 2 (Status: ${responseStatus.statusCode}): ${responseStatus.body}");
+
+                  if (!mounted) return;
+                  Navigator.pop(context); // Tutup dialog jika berjaya
+                  setState(() {}); // Refresh data dashboard admin
+
+                  ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(backgroundColor: Colors.green, content: Text("Peranti berjaya dipautkan & akaun telah diaktifkan!"))
+                  );
+                } else {
+                  if (!mounted) return;
+                  ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(backgroundColor: Colors.red, content: Text("Ralat Server: ${response.statusCode}"))
+                  );
+                }
+              } catch (e) {
+                debugPrint("Ralat semasa proses Verify: $e");
                 if (!mounted) return;
-                Navigator.pop(context);
-                setState(() {});
-                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(backgroundColor: Colors.green, content: Text("User Updated!")));
+                ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(backgroundColor: Colors.red, content: Text("Koneksi gagal atau ralat: $e"))
+                );
               }
             },
-            child: const Text("Update Device"),
+            child: const Text("Verify & Activate"),
           ),
         ],
       ),
@@ -306,7 +388,7 @@ class _AdminDashboardState extends State<AdminDashboard> {
   }
 
   // ---------------------------------------------------------
-  // SECTION: MISC FUNCTIONS
+  // SECTION: MISC FUNCTIONS (LOGOUT & PROFILE)
   // ---------------------------------------------------------
 
   void _confirmLogout() {
@@ -487,12 +569,11 @@ class _AdminDashboardState extends State<AdminDashboard> {
 
   // --- UI HELPER WIDGETS ---
 
-  // FUNGSI BARU: Untuk tentukan warna secara dinamik ikut KEY
   Color getRuleColor(String key) {
     String k = key.toLowerCase();
     if (k.contains('eco')) return Colors.green;
     if (k.contains('high')) return Colors.red;
-    if (k.contains('normal')) return Colors.blue; // WARNA BIRU UNTUK NORMAL
+    if (k.contains('normal')) return Colors.blue;
     return Colors.grey;
   }
 
@@ -506,8 +587,7 @@ class _AdminDashboardState extends State<AdminDashboard> {
             return ListTile(
               leading: CircleAvatar(
                   backgroundColor: itemColor.withOpacity(0.1),
-                  child: Icon(Icons.label_important_outline,
-                      color: itemColor, size: 20)
+                  child: Icon(Icons.label_important_outline, color: itemColor, size: 20)
               ),
               title: Text(s['setting_key']?.toString().replaceAll('_', ' ').toUpperCase() ?? "",
                   style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13)),
@@ -568,33 +648,71 @@ class _AdminDashboardState extends State<AdminDashboard> {
   Widget _buildUserTable(List users) {
     return Container(
       width: double.infinity,
-      decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(12)),
+      decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(color: Colors.grey.shade200)
+      ),
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: DataTable(
+          columnSpacing: 22,
           columns: const [
-            DataColumn(label: Text('User')),
-            DataColumn(label: Text('Device ID')),
-            DataColumn(label: Text('Action')),
+            DataColumn(label: Text('User', style: TextStyle(fontWeight: FontWeight.bold))),
+            DataColumn(label: Text('Device ID', style: TextStyle(fontWeight: FontWeight.bold))),
+            DataColumn(label: Text('Status', style: TextStyle(fontWeight: FontWeight.bold))),
+            DataColumn(label: Text('Action', style: TextStyle(fontWeight: FontWeight.bold))),
           ],
-          rows: users.map<DataRow>((u) => DataRow(cells: [
-            DataCell(Text(u['fullname'] ?? "-")),
-            DataCell(Text(u['device_id'] ?? "No Device")),
-            DataCell(
-              Row(
-                children: [
-                  IconButton(
-                      icon: const Icon(Icons.edit, color: Colors.blue, size: 18),
-                      onPressed: () => _showEditUserDialog(u)
+          rows: users.map<DataRow>((u) {
+            String status = u['device_status']?.toString() ?? "Inactive";
+            bool isActive = status == "Active";
+
+            return DataRow(cells: [
+              DataCell(Text(u['fullname'] ?? "-")),
+              DataCell(Text(
+                  u['device_id'] ?? "No Device",
+                  style: TextStyle(
+                      color: (u['device_id'] == null || u['device_id'] == "No Device") ? Colors.red : Colors.black,
+                      fontWeight: (u['device_id'] == null || u['device_id'] == "No Device") ? FontWeight.bold : FontWeight.normal
+                  )
+              )),
+              DataCell(
+                ChoiceChip(
+                  label: Text(
+                    status.toUpperCase(),
+                    style: TextStyle(
+                      color: isActive ? Colors.green : Colors.orange,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 11,
+                    ),
                   ),
-                  IconButton(
-                      icon: const Icon(Icons.delete_outline, color: Colors.redAccent, size: 18),
-                      onPressed: () => _confirmDeleteUser(u['id']?.toString())
-                  ),
-                ],
+                  selected: isActive,
+                  selectedColor: Colors.green.withOpacity(0.1),
+                  disabledColor: Colors.orange.withOpacity(0.1),
+                  onSelected: (bool selected) {
+                    _toggleDeviceStatus(u['id'].toString(), status);
+                  },
+                ),
               ),
-            ),
-          ])).toList(),
+              DataCell(
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    IconButton(
+                        icon: const Icon(Icons.edit, color: Colors.blue, size: 20),
+                        tooltip: "Bind/Verify Device",
+                        onPressed: () => _showEditUserDialog(u)
+                    ),
+                    IconButton(
+                        icon: const Icon(Icons.delete_outline, color: Colors.redAccent, size: 20),
+                        tooltip: "Delete User",
+                        onPressed: () => _confirmDeleteUser(u['id']?.toString())
+                    ),
+                  ],
+                ),
+              ),
+            ]);
+          }).toList(),
         ),
       ),
     );

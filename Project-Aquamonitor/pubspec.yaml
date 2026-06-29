@@ -26,13 +26,47 @@ dependencies:
   # 5. Icons untuk UI
   cupertino_icons: ^1.0.8
 
-  # 6 Shared preferences
+  # 6. Shared preferences
   shared_preferences: ^2.3.2
+
+  # Ditambah untuk mengawal & membaiki skrin loading (Splash Screen) yang kemek
+  flutter_native_splash: ^2.4.0
+
+  # 7. Ditambah untuk fungsi snap / pilih gambar dari galeri
+  image_picker: ^1.1.2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^5.0.0
 
+  # Ditambah untuk menukar App Icon secara automatik
+  flutter_launcher_icons: ^0.13.1
+
+# Konfigurasi penjana ikon aplikasi (Ikon APK menggunakan logoo.png)
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/logoo.png"
+
+  # Memisahkan latar belakang dan logo utama untuk Android Oreo ke atas (Fix Kemek)
+  adaptive_icon_background: "#FFFFFF"
+  adaptive_icon_foreground: "assets/logoo.png"
+  min_sdk_android: 21
+
+# Konfigurasi skrin loading semasa mula buka app (Splash Screen menggunakan logoo.png)
+flutter_native_splash:
+  color: "#F3F9FF"
+  image: "assets/logoo.png"
+
+  android_12:
+    image: "assets/logoo.png"
+    color: "#F3F9FF"
+
 flutter:
   uses-material-design: true
+
+  # KEMASKINI: Dua-dua fail imej dimasukkan supaya login screen (logo.png) tak error
+  assets:
+    - assets/logo.png
+    - assets/logoo.png

@@ -2,12 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:aquamonitor/screens/notification_screen.dart';
-
-import 'notification_screen.dart'; // IMPORT BARU
+import 'package:aquamonitor/screens/statistics_screen.dart';
+import 'package:aquamonitor/screens/water_budget_screen.dart';
 
 class ChatbotScreen extends StatefulWidget {
   final String userId;
-  const ChatbotScreen({super.key, required this.userId});
+  final String deviceId;
+
+  const ChatbotScreen({
+    super.key,
+    required this.userId,
+    required this.deviceId,
+  });
 
   @override
   State<ChatbotScreen> createState() => _ChatbotScreenState();
@@ -17,10 +23,11 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
   final TextEditingController _controller = TextEditingController();
   final ScrollController _scrollController = ScrollController();
 
-  final List<Map<String, String>> _messages = [
+  final List<Map<String, dynamic>> _messages = [
     {
       "role": "bot",
-      "text": "Hello! I am your AquaMonitor AI. How can I assist you today? 😊"
+      "text": "Hello! I am your AquaMonitor AI. How can I assist you today? 😊",
+      "action": null
     }
   ];
 
@@ -39,10 +46,12 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
   }
 
   Future<void> _sendMessage(String text) async {
-    if (text.trim().isEmpty) return;
+    if (text.trim().isEmpty || _isLoading) return;
+
+    final originalText = text.trim();
 
     setState(() {
-      _messages.add({"role": "user", "text": text});
+      _messages.add({"role": "user", "text": originalText, "action": null});
       _isLoading = true;
     });
 
@@ -54,32 +63,59 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
         Uri.parse('https://078730.unisza.work/webapp/api/chatbot_logic.php'),
         body: {
           "user_id": widget.userId,
-          "message": text.toLowerCase(),
+          "message": originalText, // Hantar teks tanpa paksaan kerdil huruf di sini
         },
-      );
+      ).timeout(const Duration(seconds: 15));
 
       if (response.statusCode == 200) {
         var data = json.decode(response.body);
-        setState(() {
-          _messages.add({
-            "role": "bot",
-            "text": data['reply'] ?? "I'm sorry, I couldn't process that request."
+        if (mounted) {
+          setState(() {
+            _messages.add({
+              "role": "bot",
+              "text": data['reply'] ?? "I'm sorry, I couldn't process that request.",
+              "action": data['action']
+            });
           });
-        });
+        }
       } else {
-        setState(() {
-          _messages.add({"role": "bot", "text": "Server error: ${response.statusCode}"});
-        });
+        if (mounted) {
+          setState(() {
+            _messages.add({"role": "bot", "text": "Server error: ${response.statusCode}", "action": null});
+          });
+        }
       }
     } catch (e) {
-      setState(() {
-        _messages.add({"role": "bot", "text": "Error: Unable to connect to server."});
-      });
+      if (mounted) {
+        setState(() {
+          _messages.add({"role": "bot", "text": "Error: Unable to connect to server.", "action": null});
+        });
+      }
     } finally {
-      setState(() {
-        _isLoading = false;
-      });
+      if (mounted) {
+        setState(() {
+          _isLoading = false;
+        });
+      }
       _scrollToBottom();
+    }
+  }
+
+  void _handleBotAction(String actionType) {
+    if (actionType == "navigate_to_stats") {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => StatisticsScreen(deviceId: widget.deviceId)
+          )
+      );
+    } else if (actionType == "navigate_to_budget") {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => WaterBudgetScreen(userId: widget.userId)
+          )
+      );
     }
   }
 
@@ -112,7 +148,7 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
           bottomRight: Radius.circular(30),
         ),
       ),
-      child: Row( // Tukar Row supaya boleh letak butang di hujung
+      child: Row(
         children: [
           const CircleAvatar(
             backgroundColor: Colors.white24,
@@ -128,7 +164,6 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
               ],
             ),
           ),
-          // TOMBOL NOTIFIKASI DI CHATBOT
           IconButton(
             icon: const Icon(Icons.notifications_active, color: Colors.white),
             onPressed: () {
@@ -145,9 +180,9 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
 
   Widget _buildQuickActions() {
     final List<Map<String, String>> actions = [
-      {"label": "Usage Status", "msg": "give me my usage status"},
-      {"label": "Estimated Cost", "msg": "how much is my water cost?"},
-      {"label": "Water Saving Tips", "msg": "give me a water saving tip"},
+      {"label": "Usage Status 📊", "msg": "check my usage status"},
+      {"label": "Estimated Cost 💰", "msg": "how much is my water cost?"},
+      {"label": "Admin's Saving Tips 💡", "msg": "give me a water saving tip"},
     ];
 
     return Container(
@@ -169,7 +204,7 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
                 borderRadius: BorderRadius.circular(20),
                 side: BorderSide(color: Colors.purple.shade100),
               ),
-              onPressed: () => _sendMessage(actions[index]['msg']!),
+              onPressed: _isLoading ? null : () => _sendMessage(actions[index]['msg']!),
             ),
           );
         },
@@ -178,35 +213,96 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
   }
 
   Widget _buildChatList() {
+    int itemCount = _messages.length + (_isLoading ? 1 : 0);
+
     return ListView.builder(
       controller: _scrollController,
       padding: const EdgeInsets.all(20),
-      itemCount: _messages.length,
+      itemCount: itemCount,
       itemBuilder: (context, index) {
+        if (index == _messages.length) {
+          return _buildTypingIndicator();
+        }
+
         bool isUser = _messages[index]["role"] == "user";
+        String? botAction = _messages[index]["action"];
+
         return Align(
           alignment: isUser ? Alignment.centerRight : Alignment.centerLeft,
-          child: Container(
-            margin: const EdgeInsets.symmetric(vertical: 8),
-            padding: const EdgeInsets.all(14),
-            constraints: BoxConstraints(maxWidth: MediaQuery.of(context).size.width * 0.75),
-            decoration: BoxDecoration(
-              color: isUser ? const Color(0xFF4A00E0) : Colors.white,
-              borderRadius: BorderRadius.only(
-                topLeft: const Radius.circular(15),
-                topRight: const Radius.circular(15),
-                bottomLeft: Radius.circular(isUser ? 15 : 0),
-                bottomRight: Radius.circular(isUser ? 0 : 15),
+          child: Column(
+            crossAxisAlignment: isUser ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+            children: [
+              Container(
+                margin: const EdgeInsets.symmetric(vertical: 4),
+                padding: const EdgeInsets.all(14),
+                constraints: BoxConstraints(maxWidth: MediaQuery.of(context).size.width * 0.75),
+                decoration: BoxDecoration(
+                  color: isUser ? const Color(0xFF4A00E0) : Colors.white,
+                  borderRadius: BorderRadius.only(
+                    topLeft: const Radius.circular(15),
+                    topRight: const Radius.circular(15),
+                    bottomLeft: Radius.circular(isUser ? 15 : 0),
+                    bottomRight: Radius.circular(isUser ? 0 : 15),
+                  ),
+                  boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 5)],
+                ),
+                child: Text(
+                  _messages[index]["text"]!,
+                  style: TextStyle(color: isUser ? Colors.white : Colors.black87),
+                ),
               ),
-              boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 5)],
-            ),
-            child: Text(
-              _messages[index]["text"]!,
-              style: TextStyle(color: isUser ? Colors.white : Colors.black87),
-            ),
+              if (!isUser && botAction != null)
+                Padding(
+                  padding: const EdgeInsets.only(left: 4, bottom: 8),
+                  child: ElevatedButton.icon(
+                    onPressed: () => _handleBotAction(botAction),
+                    icon: const Icon(Icons.open_in_new, size: 14),
+                    label: Text(
+                      botAction == "navigate_to_stats" ? "View Full Report" : "Adjust Water Budget",
+                      style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      foregroundColor: Colors.white,
+                      backgroundColor: const Color(0xFF8E2DE2),
+                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                    ),
+                  ),
+                ),
+            ],
           ),
         );
       },
+    );
+  }
+
+  Widget _buildTypingIndicator() {
+    return Align(
+      alignment: Alignment.centerLeft,
+      child: Container(
+        margin: const EdgeInsets.symmetric(vertical: 8),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        decoration: BoxDecoration(
+          color: Colors.grey.shade200,
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(15),
+            topRight: Radius.circular(15),
+            bottomRight: Radius.circular(15),
+          ),
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text("AquaMonitor AI is thinking", style: TextStyle(fontSize: 12, color: Colors.grey.shade600, fontStyle: FontStyle.italic)),
+            const SizedBox(width: 6),
+            const SizedBox(
+              width: 10,
+              height: 10,
+              child: CircularProgressIndicator(strokeWidth: 1.5, color: Color(0xFF4A00E0)),
+            )
+          ],
+        ),
+      ),
     );
   }
 
@@ -219,11 +315,12 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
           Expanded(
             child: TextField(
               controller: _controller,
+              enabled: !_isLoading,
               decoration: InputDecoration(
-                hintText: "Type your question here...",
+                hintText: _isLoading ? "AI is processing..." : "Type your question here...",
                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(25), borderSide: BorderSide.none),
                 filled: true,
-                fillColor: Colors.grey.shade100,
+                fillColor: _isLoading ? Colors.grey.shade200 : Colors.grey.shade100,
                 contentPadding: const EdgeInsets.symmetric(horizontal: 20),
               ),
               onSubmitted: (value) => _sendMessage(value),
@@ -231,12 +328,10 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
           ),
           const SizedBox(width: 10),
           CircleAvatar(
-            backgroundColor: const Color(0xFF4A00E0),
-            child: _isLoading
-                ? const SizedBox(width: 18, height: 18, child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2))
-                : IconButton(
+            backgroundColor: _isLoading ? Colors.grey : const Color(0xFF4A00E0),
+            child: IconButton(
               icon: const Icon(Icons.send, color: Colors.white),
-              onPressed: () => _sendMessage(_controller.text),
+              onPressed: _isLoading ? null : () => _sendMessage(_controller.text),
             ),
           ),
         ],

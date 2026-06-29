@@ -17,7 +17,6 @@ class HistoryScreen extends StatefulWidget {
 }
 
 class _HistoryScreenState extends State<HistoryScreen> {
-  // Variable untuk simpan Future supaya UI lebih stabil
   Future<List<dynamic>>? _historyFuture;
 
   @override
@@ -26,16 +25,21 @@ class _HistoryScreenState extends State<HistoryScreen> {
     _initFetch();
   }
 
-  // Fungsi untuk mulakan pengambilan data
   void _initFetch() {
     _historyFuture = fetchHistory();
   }
 
   Future<List<dynamic>> fetchHistory() async {
     try {
-      // Pastikan ID tidak kosong sebelum hantar ke API
-      String dId = widget.deviceId.isEmpty ? "ESP-WASH-01" : widget.deviceId;
-      String uId = widget.userId.isEmpty ? "1" : widget.userId;
+      // KEMASKINI: Buang nilai lalai hardcoded "ESP-WASH-01" dan "1"
+      String dId = widget.deviceId.trim();
+      String uId = widget.userId.trim();
+
+      // Jika parameter kosong, jangan bazirkan request hantar ke API
+      if (dId.isEmpty || dId == "null" || uId.isEmpty || uId == "null") {
+        debugPrint("Sejarah: Maklumat peranti atau ID pengguna tidak lengkap.");
+        return [];
+      }
 
       final url = Uri.parse(
           'https://078730.unisza.work/webapp/api/get_history.php?device_id=$dId&user_id=$uId');
@@ -43,7 +47,6 @@ class _HistoryScreenState extends State<HistoryScreen> {
       final response = await http.get(url).timeout(const Duration(seconds: 10));
 
       if (response.statusCode == 200) {
-        // Decode JSON dan pastikan ia adalah List
         final dynamic decodedData = json.decode(response.body);
         if (decodedData is List) {
           return decodedData;
@@ -63,7 +66,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
       case "Eco Usage":
         return Colors.green;
       default:
-        return Colors.blueAccent; // Normal Usage
+        return Colors.blueAccent;
     }
   }
 
@@ -120,7 +123,6 @@ class _HistoryScreenState extends State<HistoryScreen> {
               itemBuilder: (context, index) {
                 final log = history[index];
 
-                // Parsing data dengan selamat
                 String dateLabel = log['date']?.toString() ?? "Unknown Date";
                 double totalLiters = double.tryParse(log['total']?.toString() ?? "0") ?? 0.0;
                 String category = log['category']?.toString() ?? "Normal";

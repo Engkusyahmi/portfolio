@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:aquamonitor/screens/auth_screen.dart'; // Tukar ke auth_screen.dart
+import 'package:aquamonitor/screens/auth_screen.dart';
 
 void main() {
   runApp(const MyApp());

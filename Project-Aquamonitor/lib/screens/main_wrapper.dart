@@ -24,7 +24,7 @@ class MainWrapper extends StatefulWidget {
 class _MainWrapperState extends State<MainWrapper> {
   int _selectedIndex = 0;
 
-  // Function untuk panggil skrin berdasarkan index yang dipilih
+  // Fungsi untuk panggil skrin berdasarkan index yang dipilih
   Widget _getSelectedScreen() {
     switch (_selectedIndex) {
       case 0:
@@ -34,14 +34,15 @@ class _MainWrapperState extends State<MainWrapper> {
           fullname: widget.fullname,
         );
       case 1:
-      // SEKARANG KITA HANTAR deviceId KE SINI
+      // Menghantar deviceId sebenar milik user yang login
         return StatisticsScreen(deviceId: widget.deviceId);
       case 2:
-        return ChatbotScreen(userId: widget.userId);
+        return ChatbotScreen(userId: widget.userId, deviceId: widget.deviceId);
       case 3:
+      // Menghantar deviceId dan userId sebenar milik user yang login
         return HistoryScreen(
           deviceId: widget.deviceId,
-          userId: widget.userId, // AMBIL DARI widget.userId, JANGAN LETAK ''
+          userId: widget.userId,
         );
       case 4:
         return ProfileScreen(
@@ -56,9 +57,7 @@ class _MainWrapperState extends State<MainWrapper> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // Paparkan skrin yang dipilih
       body: _getSelectedScreen(),
-
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,
         onTap: (index) {

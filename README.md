@@ -22,6 +22,8 @@ Instead of a generic placeholder, this repository serves as a live project hub f
 #### Working Experiences Section
 ![Experiences Interface](images/We.png)
 
+
+
 ---
 
 ## 2. Core Featured Projects
