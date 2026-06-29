@@ -183,6 +183,37 @@
                 </div>
 
                 <div class="project-card">
+                    <div class="project-tags-header" style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px;">
+                        <span class="tag">Individual Project</span>
+                        <span class="tag" style="background-color: #2563eb; color: white;"><i class="fa-solid fa-server"></i> Distributed Systems</span>
+                    </div>
+                    
+                    <h4>DISTRIFLY</h4>
+                    <p class="project-subtitle">Distributed Airline Seat Booking Simulation Grid</p>
+                    <p>A high-performance Java simulation framework engineered to study the trade-offs of the CAP Theorem. Modeled autonomous cluster nodes running on isolated threads with zero shared-heap variables, interacting purely through simulated network message passing.</p>
+                    
+                    <div class="architecture-box" style="background-color: rgba(30, 41, 59, 0.2); border-left: 4px solid #3b82f6; padding: 10px; margin: 12px 0; border-radius: 4px; font-size: 0.85rem; color: inherit;">
+                        <strong style="display: block; margin-bottom: 4px; color: #3b82f6;"><i class="fa-solid fa-layer-group"></i> Core Features Stack:</strong>
+                        <span style="display: block;">• <strong>Naming Resolution:</strong> Flat Naming (DHT Chord) & Structured Domain Tree Traversal.</span>
+                        <span style="display: block;">• <strong>Consistency:</strong> Pluggable Sequential (Central Sequencer) & Eventual (Gossip Protocol) models.</span>
+                        <span style="display: block;">• <strong>Fault Tolerance:</strong> Active background Anti-Entropy Probes with automated transaction replay.</span>
+                    </div>
+
+                    <div class="tech-tags">
+                        <span>Java SE</span><span>Multithreading</span><span>Concurrency</span><span>Network Simulation</span>
+                    </div>
+                    
+                    <div class="project-links-group">
+                        <a href="https://github.com/Engkusyahmi/portfolio/tree/main/Project-Distrifly" target="_blank" rel="noopener" class="project-git-link">
+                            <i class="fa-brands fa-github"></i> Source Code
+                        </a>
+                        <button onclick="openModal(['images/distrifly-architecture.png'], 'Distrifly System Topology')" class="project-demo-link">
+                            <i class="fa-solid fa-diagram-project"></i> View Architecture
+                        </button>
+                    </div>
+                </div>
+
+                <div class="project-card">
                     <span class="tag">Individual Project</span>
                     <h4>WaterWise</h4>
                     <p class="project-subtitle">Gamification Smart Water Website</p>
