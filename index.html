@@ -16,7 +16,7 @@
             <div class="nav-right-wrapper">
                 <button id="theme-toggle" class="theme-btn" aria-label="Toggle Theme">
                     <i class="fa-solid fa-moon"></i>
-                </</button>
+                </button>
 
                 <input type="checkbox" id="nav-toggle" class="nav-toggle">
                 <label for="nav-toggle" class="nav-toggle-label">
@@ -114,36 +114,37 @@
             <p class="section-desc text-center">A curation of production systems, cross-platform mobile apps, and frameworks engineered throughout my academic tenure.</p>
             
             <div class="projects-grid">
+                <!-- PROJECT 1: AquaMonitor -->
                 <div class="project-card">
-                    <div class="project-tags-header" style="display: flex; gap: 10px; margin-bottom: 10px; align-items: center;">
+                    <div class="project-tags-header" style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px;">
                         <span class="tag">Final Year Project</span>
-                        <span class="tag-award"><i class="fa-solid fa-medal"></i> Silver Award</span>
+                        <span class="tag-award"><i class="fa-solid fa-medal"></i> Silver Award | Final Year Project Showcase 2026</span>
                     </div>
                     
                     <h4>AquaMonitor</h4>
                     <p class="project-subtitle">Smart Water Monitor & AI Chatbot</p>
                     <p>IoT domestic water tracking platform utilizing ESP32 microcontrollers and YF-S201 sensors. Engineered with a Flutter dashboard for live telemetry visualization and native PHP micro APIs pointing to a secure MySQL infrastructure.</p>
-                    
                     <div class="tech-tags">
                         <span>Flutter</span><span>PHP API</span><span>MySQL</span><span>ESP32</span>
                     </div>
-                    
-                    <div class="project-links-group" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;">
+                    <div class="project-links-group">
                         <a href="https://github.com/Engkusyahmi/portfolio/tree/main/Project-Aquamonitor" target="_blank" rel="noopener" class="project-git-link">
                             <i class="fa-brands fa-github"></i> Source Code
                         </a>
-                        <a href="LINK_VIDEO_YOUTUBE_SEBENAR" target="_blank" rel="noopener" class="project-demo-link" style="background-color: #ef4444; border-color: #ef4444; color: white;">
+                        <button onclick="openVideoModal('n4RtdoVXeGw', 'AquaMonitor System Demo')" class="project-demo-link" style="background-color: #ef4444; border:none;">
                             <i class="fa-brands fa-youtube"></i> Watch Demo
-                        </a>
-                        <button onclick="openModal(['images/qr.png'], 'Scan QR to Download')" class="project-git-link" style="cursor: pointer; text-align: center; justify-content: center;">
+                        </button>
+                        <button onclick="openModal(['images/qr.png'], 'Scan QR to Download')" class="project-git-link">
                             <i class="fa-solid fa-qrcode"></i> Scan QR
                         </button>
-                        <button onclick="openModal(['images/1.png', 'images/2.png', 'images/3.png', 'images/4.png', 'images/5.png', 'images/6.png', 'images/7.png', 'images/8.png', 'images/9.png', 'images/10.png', 'images/11.png', 'images/12.png', 'images/13.png', 'images/14.png'], 'AquaMonitor Interface')" class="project-demo-link" style="cursor: pointer; text-align: center; justify-content: center;">
+                        <!-- ARRAY GAMBAR DIKEMASKINI DARI 1.jpg HINGGA 18.jpg -->
+                        <button onclick="openModal(['images/1.jpg', 'images/2.jpg', 'images/3.jpg', 'images/4.jpg', 'images/5.jpg', 'images/6.jpg', 'images/7.jpg', 'images/8.jpg', 'images/9.jpg', 'images/10.jpg', 'images/11.jpg', 'images/12.jpg', 'images/13.jpg', 'images/14.jpg', 'images/15.jpg', 'images/16.jpg', 'images/17.jpg', 'images/18.jpg'], 'AquaMonitor Mobile App Interface')" class="project-demo-link">
                             <i class="fa-solid fa-mobile-screen"></i> App Screens
                         </button>
                     </div>
                 </div>
 
+                <!-- PROJECT 2: WaterWise -->
                 <div class="project-card">
                     <span class="tag">Individual Project</span>
                     <h4>WaterWise</h4>
@@ -162,6 +163,7 @@
                     </div>
                 </div>
 
+                <!-- PROJECT 3: Saku Legacy -->
                 <div class="project-card">
                     <span class="tag">Individual Project</span>
                     <h4>Saku Legacy</h4>
@@ -174,12 +176,13 @@
                         <a href="https://github.com/Engkusyahmi/portfolio/tree/main/Project-SakuLegacy" target="_blank" rel="noopener" class="project-git-link">
                             <i class="fa-brands fa-github"></i> Source Code
                         </a>
-                        <button onclick="openModal(['images/a.png', 'images/b.png', 'images/c.png', 'images/d.png', 'images/e.png'], 'Saku Legacy Mobile Interface')" class="project-demo-link" style="cursor: pointer;">
+                        <button onclick="openModal(['images/a.png', 'images/b.png', 'images/c.png', 'images/d.png', 'images/e.png'], 'Saku Legacy Mobile Interface')" class="project-demo-link">
                             <i class="fa-solid fa-mobile-screen"></i> View Preview
                         </button>
                     </div>
                 </div>
 
+                <!-- PROJECT 4: Drive N Rent -->
                 <div class="project-card">
                     <span class="tag">Group Project</span>
                     <h4>Drive N Rent</h4>
@@ -201,6 +204,7 @@
         </div>
     </section>
 
+    <!-- SYSTEM MULTI-MODAL PREVIEWER -->
     <div id="imageModal" class="modal-overlay" onclick="closeModal()">
         <span class="modal-close" onclick="closeModal()">&times;</span>
         
@@ -209,7 +213,11 @@
                 <i class="fa-solid fa-chevron-left"></i>
             </button>
             
-            <img class="modal-content" id="modalTargetImg" src="">
+            <img class="modal-content" id="modalTargetImg" src="" style="display: block;">
+            
+            <div id="videoContainer" style="display: none; width: 100%; aspect-ratio: 9/16; max-height: 75vh;">
+                <iframe id="modalTargetVideo" src="" style="width: 100%; height: 100%; border-radius: 12px; border: none;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
             
             <button class="slider-arrow arrow-right" onclick="changeSlide(1)">
                 <i class="fa-solid fa-chevron-right"></i>
@@ -285,43 +293,29 @@
     </footer>
 
     <script>
-        /* --- 1. MASKED URL & SMOOTH SCROLL ROUTING --- */
         document.querySelectorAll('[data-target]').forEach(link => {
             link.addEventListener('click', function(e) {
                 e.preventDefault(); 
-                
                 const targetId = this.getAttribute('data-target');
                 const targetSection = document.getElementById(targetId);
-                
                 if (targetSection) {
                     const headerHeight = document.querySelector('header').offsetHeight;
                     const targetPosition = targetSection.getBoundingClientRect().top + window.pageYOffset - headerHeight;
-                    
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
-
+                    window.scrollTo({ top: targetPosition, behavior: 'smooth' });
                     const navToggle = document.getElementById('nav-toggle');
-                    if (navToggle.checked) {
-                        navToggle.checked = false;
-                    }
+                    if (navToggle.checked) { navToggle.checked = false; }
                 }
             });
         });
 
-        /* --- 2. DARK / LIGHT MODE CONTROLLER --- */
         const themeToggleBtn = document.getElementById('theme-toggle');
         const themeIcon = themeToggleBtn.querySelector('i');
-        
         if (localStorage.getItem('theme') === 'dark') {
             document.body.classList.add('dark-mode');
             themeIcon.classList.replace('fa-moon', 'fa-sun');
         }
-
         themeToggleBtn.addEventListener('click', () => {
             document.body.classList.toggle('dark-mode');
-            
             if (document.body.classList.contains('dark-mode')) {
                 themeIcon.classList.replace('fa-moon', 'fa-sun');
                 localStorage.setItem('theme', 'dark');
@@ -331,7 +325,6 @@
             }
         });
 
-        /* --- 3. ADVANCED MODAL SLIDER CONTROLLER --- */
         let currentImages = [];
         let currentImgIndex = 0;
         let baseTitle = "";
@@ -340,11 +333,12 @@
             currentImages = Array.isArray(imgArray) ? imgArray : [imgArray];
             currentImgIndex = 0;
             baseTitle = projectTitle;
-
             const modal = document.getElementById('imageModal');
             const arrowLeft = modal.querySelector('.arrow-left');
             const arrowRight = modal.querySelector('.arrow-right');
-
+            document.getElementById('modalTargetImg').style.display = "block";
+            document.getElementById('videoContainer').style.display = "none";
+            document.getElementById('modalTargetVideo').src = "";
             if (currentImages.length <= 1) {
                 arrowLeft.style.display = "none";
                 arrowRight.style.display = "none";
@@ -352,7 +346,6 @@
                 arrowLeft.style.display = "flex";
                 arrowRight.style.display = "flex";
             }
-
             modal.style.display = "flex";
             updateModalImage();
         }
@@ -360,9 +353,7 @@
         function updateModalImage() {
             const modalImg = document.getElementById('modalTargetImg');
             const modalCaption = document.getElementById('modalCaption');
-            
             modalImg.src = currentImages[currentImgIndex];
-            
             if (currentImages.length > 1) {
                 modalCaption.innerText = `${baseTitle} (${currentImgIndex + 1}/${currentImages.length})`;
             } else {
@@ -370,22 +361,29 @@
             }
         }
 
+        function openVideoModal(videoId, projectTitle = "Video Demo") {
+            const modal = document.getElementById('imageModal');
+            modal.querySelector('.arrow-left').style.display = "none";
+            modal.querySelector('.arrow-right').style.display = "none";
+            document.getElementById('modalTargetImg').style.display = "none";
+            document.getElementById('videoContainer').style.display = "block";
+            document.getElementById('modalTargetVideo').src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+            document.getElementById('modalCaption').innerText = projectTitle;
+            modal.style.display = "flex";
+        }
+
         function changeSlide(direction) {
+            if (currentImages.length <= 1) return;
             currentImgIndex += direction;
-            
-            if (currentImgIndex >= currentImages.length) {
-                currentImgIndex = 0;
-            } else if (currentImgIndex < 0) {
-                currentImgIndex = currentImages.length - 1;
-            }
-            
+            if (currentImgIndex >= currentImages.length) { currentImgIndex = 0; }
+            else if (currentImgIndex < 0) { currentImgIndex = currentImages.length - 1; }
             updateModalImage();
         }
 
         function closeModal() {
             document.getElementById('imageModal').style.display = "none";
+            document.getElementById('modalTargetVideo').src = "";
         }
     </script>
-
 </body>
 </html>

@@ -639,4 +639,38 @@ footer {
     .nav-toggle:checked ~ nav {
         right: 0;
     }
+    /* --- AMENDMENT FOR SILVER AWARD BADGE --- */
+.tag-award {
+    background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 50%, #94a3b8 100%);
+    color: #1e293b;
+    font-size: 0.75rem;
+    font-weight: 800;
+    padding: 0.35rem 0.85rem;
+    border-radius: 30px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border: 1px solid #94a3b8;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.tag-award i {
+    color: #64748b;
+    text-shadow: 0 1px 1px rgba(255,255,255,0.8);
+}
+
+/* Dark Mode Adaptation */
+body.dark-mode .tag-award {
+    background: linear-gradient(135deg, #334155 0%, #475569 50%, #1e293b 100%);
+    color: #f8fafc;
+    border-color: #475569;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .tag-award i {
+    color: #cbd5e1;
+    text-shadow: none;
+}
 }
