@@ -6,6 +6,35 @@
     <title>Engku Syahmi | Portfolio</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CSS FIX FOR MOBILE OVERLAY OVERLAPPING (Screenshot 2026-06-10 001838.png) */
+        @media (max-width: 768px) {
+            .nav-right-wrapper nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 280px;
+                height: 100vh;
+                background-color: #1e293b; /* Solid dark background to block out background hero text */
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.25);
+                display: flex;
+                flex-direction: column;
+                padding: 80px 30px;
+                gap: 20px;
+                transition: right 0.4s ease;
+                z-index: 9999; /* Higher priority layer stack execution */
+            }
+            body.dark-mode .nav-right-wrapper nav {
+                background-color: #0f172a;
+            }
+            .nav-toggle:checked ~ nav {
+                right: 0 !important;
+            }
+            .nav-toggle-label {
+                z-index: 10000 !important;
+            }
+        }
+    </style>
 </head>
 <body>
 
@@ -114,7 +143,6 @@
             <p class="section-desc text-center">A curation of production systems, cross-platform mobile apps, and frameworks engineered throughout my academic tenure.</p>
             
             <div class="projects-grid">
-                <!-- PROJECT 1: AquaMonitor -->
                 <div class="project-card">
                     <div class="project-tags-header" style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px;">
                         <span class="tag">Final Year Project</span>
@@ -124,6 +152,17 @@
                     <h4>AquaMonitor</h4>
                     <p class="project-subtitle">Smart Water Monitor & AI Chatbot</p>
                     <p>IoT domestic water tracking platform utilizing ESP32 microcontrollers and YF-S201 sensors. Engineered with a Flutter dashboard for live telemetry visualization and native PHP micro APIs pointing to a secure MySQL infrastructure.</p>
+                    
+                    <div class="demo-credentials-box" style="background-color: rgba(148, 163, 184, 0.1); border-left: 4px solid #94a3b8; padding: 10px; margin: 12px 0; border-radius: 4px; font-size: 0.85rem; color: inherit;">
+                        <strong style="display: block; margin-bottom: 4px; color: #64748b;"><i class="fa-solid fa-key"></i> Try Demo Account Login:</strong>
+                        <span style="display: block;"><strong>Email:</strong> syahmi@gmail.com</span>
+                        <span style="display: block;"><strong>Password:</strong> 1234</span>
+                    </div>
+
+                    <div class="telemetry-notice-box" style="background-color: rgba(239, 68, 68, 0.1); border-left: 4px solid #ef4444; padding: 10px; margin-bottom: 15px; border-radius: 4px; font-size: 0.82rem; color: #b91c1c;">
+                        <i class="fa-solid fa-triangle-exclamation"></i> <strong>Live Data Notice:</strong> The domestic water telemetry stream on the dashboard requires the physical ESP32 hardware module to be online. Please refer to the <strong>Watch Demo</strong> video to see the live tracking setup operational in real-time.
+                    </div>
+
                     <div class="tech-tags">
                         <span>Flutter</span><span>PHP API</span><span>MySQL</span><span>ESP32</span>
                     </div>
@@ -131,20 +170,18 @@
                         <a href="https://github.com/Engkusyahmi/portfolio/tree/main/Project-Aquamonitor" target="_blank" rel="noopener" class="project-git-link">
                             <i class="fa-brands fa-github"></i> Source Code
                         </a>
-                        <button onclick="openVideoModal('n4RtdoVXeGw', 'AquaMonitor System Demo')" class="project-demo-link" style="background-color: #ef4444; border:none;">
+                        <button onclick="openVideoModal('n4RtdoVXeGw', 'AquaMonitor System Demo')" class="project-demo-link" style="background-color: #ef4444; border:none; color: white; cursor: pointer;">
                             <i class="fa-brands fa-youtube"></i> Watch Demo
                         </button>
                         <button onclick="openModal(['images/qr.png'], 'Scan QR to Download')" class="project-git-link">
                             <i class="fa-solid fa-qrcode"></i> Scan QR
                         </button>
-                        <!-- ARRAY GAMBAR DIKEMASKINI DARI 1.jpg HINGGA 18.jpg -->
-                        <button onclick="openModal(['images/1.jpg', 'images/2.jpg', 'images/3.jpg', 'images/4.jpg', 'images/5.jpg', 'images/6.jpg', 'images/7.jpg', 'images/8.jpg', 'images/9.jpg', 'images/10.jpg', 'images/11.jpg', 'images/12.jpg', 'images/13.jpg', 'images/14.jpg', 'images/15.jpg', 'images/16.jpg', 'images/17.jpg', 'images/18.jpg'], 'AquaMonitor Mobile App Interface')" class="project-demo-link">
+                        <button onclick="openModal(['images/1.jpg', 'images/2.jpg', 'images/3.jpg', 'images/4.jpg', 'images/5.jpg', 'images/6.jpg', 'images/7.jpg', 'images/8.jpg', 'images/9.jpg', 'images/10.jpg', 'images/11.jpg', 'images/12.jpg', 'images/13.jpg', 'images/14.jpg', 'images/15.jpg', 'images/16.jpg', 'images/17.jpg', 'images/18.jpg'], 'AquaMonitor Project Showcase')" class="project-demo-link">
                             <i class="fa-solid fa-mobile-screen"></i> App Screens
                         </button>
                     </div>
                 </div>
 
-                <!-- PROJECT 2: WaterWise -->
                 <div class="project-card">
                     <span class="tag">Individual Project</span>
                     <h4>WaterWise</h4>
@@ -163,7 +200,6 @@
                     </div>
                 </div>
 
-                <!-- PROJECT 3: Saku Legacy -->
                 <div class="project-card">
                     <span class="tag">Individual Project</span>
                     <h4>Saku Legacy</h4>
@@ -182,7 +218,6 @@
                     </div>
                 </div>
 
-                <!-- PROJECT 4: Drive N Rent -->
                 <div class="project-card">
                     <span class="tag">Group Project</span>
                     <h4>Drive N Rent</h4>
@@ -204,7 +239,6 @@
         </div>
     </section>
 
-    <!-- SYSTEM MULTI-MODAL PREVIEWER -->
     <div id="imageModal" class="modal-overlay" onclick="closeModal()">
         <span class="modal-close" onclick="closeModal()">&times;</span>
         
@@ -328,17 +362,22 @@
         let currentImages = [];
         let currentImgIndex = 0;
         let baseTitle = "";
+        let fallbackAttempted = false;
 
         function openModal(imgArray, projectTitle = "Preview") {
             currentImages = Array.isArray(imgArray) ? imgArray : [imgArray];
             currentImgIndex = 0;
             baseTitle = projectTitle;
+            fallbackAttempted = false;
+
             const modal = document.getElementById('imageModal');
             const arrowLeft = modal.querySelector('.arrow-left');
             const arrowRight = modal.querySelector('.arrow-right');
+            
             document.getElementById('modalTargetImg').style.display = "block";
             document.getElementById('videoContainer').style.display = "none";
             document.getElementById('modalTargetVideo').src = "";
+            
             if (currentImages.length <= 1) {
                 arrowLeft.style.display = "none";
                 arrowRight.style.display = "none";
@@ -353,13 +392,35 @@
         function updateModalImage() {
             const modalImg = document.getElementById('modalTargetImg');
             const modalCaption = document.getElementById('modalCaption');
+            fallbackAttempted = false; 
+            
             modalImg.src = currentImages[currentImgIndex];
+            
             if (currentImages.length > 1) {
-                modalCaption.innerText = `${baseTitle} (${currentImgIndex + 1}/${currentImages.length})`;
+                let categoryLabel = "Mobile App Interface";
+                // Explicitly intercept indices 0 and 1 for IoT Hardware Setup text mappings
+                if (baseTitle.includes("AquaMonitor")) {
+                    if (currentImgIndex === 0 || currentImgIndex === 1) {
+                        categoryLabel = "IoT Hardware Setup";
+                    }
+                }
+                modalCaption.innerText = `${baseTitle} - ${categoryLabel} (${currentImgIndex + 1}/${currentImages.length})`;
             } else {
                 modalCaption.innerText = baseTitle;
             }
         }
+
+        // Silent global extension patch tool listener logic
+        document.getElementById('modalTargetImg').addEventListener('error', function() {
+            if (!fallbackAttempted) {
+                fallbackAttempted = true;
+                let currentSrc = this.src;
+                if (currentSrc.endsWith('.jpg')) { this.src = currentSrc.replace('.jpg', '.JPG'); }
+                else if (currentSrc.endsWith('.JPG')) { this.src = currentSrc.replace('.JPG', '.jpg'); }
+                else if (currentSrc.endsWith('.png')) { this.src = currentSrc.replace('.png', '.PNG'); }
+                else if (currentSrc.endsWith('.PNG')) { this.src = currentSrc.replace('.PNG', '.png'); }
+            }
+        });
 
         function openVideoModal(videoId, projectTitle = "Video Demo") {
             const modal = document.getElementById('imageModal');
