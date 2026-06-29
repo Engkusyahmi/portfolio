@@ -424,6 +424,26 @@ body.dark-mode .tag { background-color: rgba(241, 245, 249, 0.1); }
 }
 .project-demo-link:hover { background-color: var(--primary-hover); }
 
+.tag-award {
+    background-color: #e2e8f0; /* Silver color */
+    color: #475569;
+    font-size: 0.75rem;
+    font-weight: 800;
+    padding: 0.3rem 0.75rem;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    border: 1px solid #cbd5e1;
+}
+
+/* Style tambahan kalau nak nampak lebih 'shiny' sikit */
+body.dark-mode .tag-award {
+    background-color: #334155;
+    color: #f1f5f9;
+    border-color: #475569;
+}
+
 /* --- 8. PREVIEW MODAL --- */
 .modal-overlay {
     display: none;

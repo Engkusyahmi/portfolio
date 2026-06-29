@@ -16,7 +16,7 @@
             <div class="nav-right-wrapper">
                 <button id="theme-toggle" class="theme-btn" aria-label="Toggle Theme">
                     <i class="fa-solid fa-moon"></i>
-                </button>
+                </</button>
 
                 <input type="checkbox" id="nav-toggle" class="nav-toggle">
                 <label for="nav-toggle" class="nav-toggle-label">
@@ -115,19 +115,31 @@
             
             <div class="projects-grid">
                 <div class="project-card">
-                    <span class="tag">Final Year Project</span>
+                    <div class="project-tags-header" style="display: flex; gap: 10px; margin-bottom: 10px; align-items: center;">
+                        <span class="tag">Final Year Project</span>
+                        <span class="tag-award"><i class="fa-solid fa-medal"></i> Silver Award</span>
+                    </div>
+                    
                     <h4>AquaMonitor</h4>
                     <p class="project-subtitle">Smart Water Monitor & AI Chatbot</p>
                     <p>IoT domestic water tracking platform utilizing ESP32 microcontrollers and YF-S201 sensors. Engineered with a Flutter dashboard for live telemetry visualization and native PHP micro APIs pointing to a secure MySQL infrastructure.</p>
+                    
                     <div class="tech-tags">
                         <span>Flutter</span><span>PHP API</span><span>MySQL</span><span>ESP32</span>
                     </div>
-                    <div class="project-links-group">
+                    
+                    <div class="project-links-group" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;">
                         <a href="https://github.com/Engkusyahmi/portfolio/tree/main/Project-Aquamonitor" target="_blank" rel="noopener" class="project-git-link">
                             <i class="fa-brands fa-github"></i> Source Code
                         </a>
-                        <button onclick="openModal(['images/1.png', 'images/2.png', 'images/3.png', 'images/4.png', 'images/5.png', 'images/6.png', 'images/7.png', 'images/8.png', 'images/9.png', 'images/10.png', 'images/11.png', 'images/12.png', 'images/13.png', 'images/14.png'], 'AquaMonitor Mobile App Interface')" class="project-demo-link">
-                            <i class="fa-solid fa-mobile-screen"></i> View Preview
+                        <a href="LINK_VIDEO_YOUTUBE_SEBENAR" target="_blank" rel="noopener" class="project-demo-link" style="background-color: #ef4444; border-color: #ef4444; color: white;">
+                            <i class="fa-brands fa-youtube"></i> Watch Demo
+                        </a>
+                        <button onclick="openModal(['images/qr.png'], 'Scan QR to Download')" class="project-git-link" style="cursor: pointer; text-align: center; justify-content: center;">
+                            <i class="fa-solid fa-qrcode"></i> Scan QR
+                        </button>
+                        <button onclick="openModal(['images/1.png', 'images/2.png', 'images/3.png', 'images/4.png', 'images/5.png', 'images/6.png', 'images/7.png', 'images/8.png', 'images/9.png', 'images/10.png', 'images/11.png', 'images/12.png', 'images/13.png', 'images/14.png'], 'AquaMonitor Interface')" class="project-demo-link" style="cursor: pointer; text-align: center; justify-content: center;">
+                            <i class="fa-solid fa-mobile-screen"></i> App Screens
                         </button>
                     </div>
                 </div>
@@ -162,7 +174,7 @@
                         <a href="https://github.com/Engkusyahmi/portfolio/tree/main/Project-SakuLegacy" target="_blank" rel="noopener" class="project-git-link">
                             <i class="fa-brands fa-github"></i> Source Code
                         </a>
-                        <button onclick="openModal(['images/a.png', 'images/b.png', 'images/c.png', 'images/d.png', 'images/e.png'], 'Saku Legacy Mobile Interface')" class="project-demo-link">
+                        <button onclick="openModal(['images/a.png', 'images/b.png', 'images/c.png', 'images/d.png', 'images/e.png'], 'Saku Legacy Mobile Interface')" class="project-demo-link" style="cursor: pointer;">
                             <i class="fa-solid fa-mobile-screen"></i> View Preview
                         </button>
                     </div>
