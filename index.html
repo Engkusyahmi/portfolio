@@ -8,9 +8,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/light/style.css">
+    <noscript><style>.reveal { opacity: 1 !important; transform: none !important; }</style></noscript>
 </head>
 <body>
+
+    <a href="#home" class="skip-link">Skip to content</a>
 
     <header>
         <div class="nav-container">
@@ -18,7 +21,7 @@
 
             <div class="nav-right-wrapper">
                 <button id="theme-toggle" class="theme-btn" aria-label="Toggle Theme">
-                    <i class="fa-solid fa-moon"></i>
+                    <i class="ph-light ph-moon"></i>
                 </button>
 
                 <input type="checkbox" id="nav-toggle" class="nav-toggle">
@@ -58,7 +61,7 @@
         <div class="section-container">
             <div class="about-grid">
                 <div class="about-img-container">
-                    <img src="images/Profile.jpg" alt="Engku Syahmi" class="about-img">
+                    <img src="images/Profile.jpg" alt="Portrait of Engku Ahmad Syahmi, Computer Science undergraduate" class="about-img">
                     <div class="img-backdrop"></div>
                 </div>
                 <div class="about-text">
@@ -123,7 +126,7 @@
                 <div class="project-card spec-panel">
                     <div class="project-tags-header">
                         <span class="tag">Final Year Project</span>
-                        <span class="tag-award"><i class="fa-solid fa-medal"></i> Silver Award · FYP Showcase 2026</span>
+                        <span class="tag-award"><i class="ph-light ph-medal"></i> Silver Award · FYP Showcase 2026</span>
                     </div>
 
                     <h4>AquaMonitor</h4>
@@ -131,13 +134,13 @@
                     <p>IoT telemetry platform tracking domestic water metrics via an ESP32 microgrid and YF-S201 sensors. Developed under an Agile (Scrum) methodology, implementing native PHP REST endpoints to route data streams safely into live hosted MySQL infrastructure with integrated AI insights.</p>
 
                     <div class="demo-credentials-box">
-                        <h4><i class="fa-solid fa-key"></i> Try Demo Account Login</h4>
+                        <h4><i class="ph-light ph-key"></i> Try Demo Account Login</h4>
                         <p><strong>Email:</strong> syahmi@gmail.com</p>
                         <p><strong>Password:</strong> 1234</p>
                     </div>
 
                     <div class="telemetry-notice-box">
-                        <i class="fa-solid fa-triangle-exclamation"></i> <strong>Live Data Notice:</strong> The hardware module stream requires the physical ESP32 setup to be online. Please refer to the <strong>Watch Demo</strong> video to view real-time operations.
+                        <i class="ph-light ph-warning"></i> <strong>Live Data Notice:</strong> The hardware module stream requires the physical ESP32 setup to be online. Please refer to the <strong>Watch Demo</strong> video to view real-time operations.
                     </div>
 
                     <div class="tech-tags">
@@ -145,16 +148,16 @@
                     </div>
                     <div class="project-links-group">
                         <a href="https://github.com/Engkusyahmi/portfolio/tree/main/Project-Aquamonitor" target="_blank" rel="noopener" class="project-git-link">
-                            <i class="fa-brands fa-github"></i> Source Code
+                            <i class="ph-light ph-github-logo"></i> Source Code
                         </a>
                         <button onclick="openVideoModal('n4RtdoVXeGw', 'AquaMonitor System Demo')" class="project-demo-link">
-                            <i class="fa-brands fa-youtube"></i> Watch Demo
+                            <i class="ph-light ph-youtube-logo"></i> Watch Demo
                         </button>
                         <button onclick="openModal(['images/qr.png'], 'Scan QR to Download')" class="project-git-link">
-                            <i class="fa-solid fa-qrcode"></i> Scan QR
+                            <i class="ph-light ph-qr-code"></i> Scan QR
                         </button>
                         <button onclick="openModal(['images/1.jpg', 'images/2.jpg', 'images/3.jpg', 'images/4.jpg', 'images/5.jpg', 'images/6.jpg', 'images/7.jpg', 'images/8.jpg', 'images/9.jpg', 'images/10.jpg', 'images/11.jpg', 'images/12.jpg', 'images/13.jpg', 'images/14.jpg', 'images/15.jpg', 'images/16.jpg', 'images/17.jpg', 'images/18.jpg'], 'AquaMonitor Project Showcase')" class="project-demo-link">
-                            <i class="fa-solid fa-mobile-screen"></i> App Screens
+                            <i class="ph-light ph-device-mobile"></i> App Screens
                         </button>
                     </div>
                 </div>
@@ -162,7 +165,7 @@
                 <div class="project-card spec-panel">
                     <div class="project-tags-header">
                         <span class="tag">Group Project</span>
-                        <span class="tag tag-distributed"><i class="fa-solid fa-server"></i> Distributed Systems</span>
+                        <span class="tag tag-distributed"><i class="ph-light ph-hard-drives"></i> Distributed Systems</span>
                     </div>
 
                     <h4>DISTRIFLY</h4>
@@ -170,7 +173,7 @@
                     <p>A high-performance Java simulation framework engineered to study the trade-offs of the CAP Theorem. Modeled autonomous cluster nodes running on isolated threads with zero shared-heap variables, interacting purely through simulated network message passing.</p>
 
                     <div class="architecture-box blueprint-theme">
-                        <h4><i class="fa-solid fa-layer-group"></i> Core Features Stack</h4>
+                        <h4><i class="ph-light ph-stack"></i> Core Features Stack</h4>
                         <ul>
                             <li><strong>Naming Resolution:</strong> Flat Naming (DHT Chord) & Structured Domain Tree Traversal.</li>
                             <li><strong>Consistency:</strong> Pluggable Sequential (Central Sequencer) & Eventual (Gossip Protocol) models.</li>
@@ -184,10 +187,10 @@
 
                     <div class="project-links-group">
                         <a href="https://github.com/Engkusyahmi/portfolio/tree/main/Project-Distrifly" target="_blank" rel="noopener" class="project-git-link">
-                            <i class="fa-brands fa-github"></i> Source Code
+                            <i class="ph-light ph-github-logo"></i> Source Code
                         </a>
                         <button onclick="openModal(['images/arch.png'], 'Distrifly System Topology')" class="project-demo-link">
-                            <i class="fa-solid fa-diagram-project"></i> View Architecture
+                            <i class="ph-light ph-flow-arrow"></i> View Architecture
                         </button>
                     </div>
                 </div>
@@ -195,7 +198,7 @@
                 <div class="project-card spec-panel">
                     <div class="project-tags-header">
                         <span class="tag">Individual Project</span>
-                        <span class="tag tag-gamification"><i class="fa-solid fa-gamepad"></i> Gamification Architecture</span>
+                        <span class="tag tag-gamification"><i class="ph-light ph-game-controller"></i> Gamification Architecture</span>
                     </div>
 
                     <h4>WaterWise</h4>
@@ -203,7 +206,7 @@
                     <p>A web-based behavioral tracking gamification system built over a Model-View-Controller (MVC) architecture using CodeIgniter 4. This system targets positive environmental habit adjustments through structured interactive user mechanics.</p>
 
                     <div class="architecture-box gaming-theme">
-                        <h4><i class="fa-solid fa-trophy"></i> Engagement Mechanisms</h4>
+                        <h4><i class="ph-light ph-trophy"></i> Engagement Mechanisms</h4>
                         <ul>
                             <li><strong>Progression System:</strong> Native internal Experience Point (XP) increments and level scaling.</li>
                             <li><strong>Retention Engine:</strong> Automated daily quest structures and behavioral achievement milestones.</li>
@@ -212,7 +215,7 @@
                     </div>
 
                     <div class="demo-credentials-box">
-                        <h4><i class="fa-solid fa-key"></i> Try Demo Account Login</h4>
+                        <h4><i class="ph-light ph-key"></i> Try Demo Account Login</h4>
                         <p><strong>Username:</strong> syah</p>
                         <p><strong>Password:</strong> 1234</p>
                     </div>
@@ -222,10 +225,10 @@
                     </div>
                     <div class="project-links-group">
                         <a href="https://github.com/Engkusyahmi/portfolio/tree/main/Project-Waterwise" target="_blank" rel="noopener" class="project-git-link">
-                            <i class="fa-brands fa-github"></i> Source Code
+                            <i class="ph-light ph-github-logo"></i> Source Code
                         </a>
                         <a href="https://078730.unisza.work/GamingSmartWaterConsumption/" target="_blank" rel="noopener" class="project-demo-link web-link">
-                            <i class="fa-solid fa-globe"></i> Live Website
+                            <i class="ph-light ph-globe"></i> Live Website
                         </a>
                     </div>
                 </div>
@@ -239,7 +242,7 @@
                     <p>A specialized mobile photo booth utility built with Flutter. Captures and renders responsive camera canvas frameworks with instant frame selection overlays, engineered to immediately push output photo nodes directly to a configured Telegram Bot channel automatically via API workflows.</p>
 
                     <div class="architecture-box telegram-theme">
-                        <h4><i class="fa-solid fa-robot"></i> Automated Routing Engine</h4>
+                        <h4><i class="ph-light ph-robot"></i> Automated Routing Engine</h4>
                         <ul>
                             <li><strong>Image Capture Core:</strong> Native device canvas rendering supporting fluid multi-frame selection layouts.</li>
                             <li><strong>Webhook Automation:</strong> Instant, background delivery of compiled images directly to a target Telegram Bot API channel.</li>
@@ -251,10 +254,10 @@
                     </div>
                     <div class="project-links-group">
                         <a href="https://github.com/Engkusyahmi/portfolio/tree/main/Project-SakuLegacy" target="_blank" rel="noopener" class="project-git-link">
-                            <i class="fa-brands fa-github"></i> Source Code
+                            <i class="ph-light ph-github-logo"></i> Source Code
                         </a>
                         <button onclick="openModal(['images/a.png', 'images/b.png', 'images/c.png', 'images/d.png', 'images/e.png'], 'Saku Legacy Mobile Interface')" class="project-demo-link">
-                            <i class="fa-solid fa-mobile-screen"></i> View Preview
+                            <i class="ph-light ph-device-mobile"></i> View Preview
                         </button>
                     </div>
                 </div>
@@ -268,7 +271,7 @@
                     <p>Comprehensive enterprise vehicle management deployment. Assumed responsibilities for architectural design analysis, benchmarking technical stacks, validating operational integrity, and optimizing relational data pipelines on local Apache configurations.</p>
 
                     <div class="demo-credentials-box">
-                        <h4><i class="fa-solid fa-key"></i> Try Demo Account Logins</h4>
+                        <h4><i class="ph-light ph-key"></i> Try Demo Account Logins</h4>
                         <p><strong>Renter User:</strong> danish / Danish123</p>
                         <p><strong>Car Owner:</strong> siti / Siti123</p>
                     </div>
@@ -278,10 +281,10 @@
                     </div>
                     <div class="project-links-group">
                         <a href="https://github.com/Engkusyahmi/portfolio/tree/main/Project-DriveNRent" target="_blank" rel="noopener" class="project-git-link">
-                            <i class="fa-brands fa-github"></i> Source Code
+                            <i class="ph-light ph-github-logo"></i> Source Code
                         </a>
                         <a href="https://drivenrent.unisza.work/Main/" target="_blank" rel="noopener" class="project-demo-link web-link">
-                            <i class="fa-solid fa-globe"></i> Live Website
+                            <i class="ph-light ph-globe"></i> Live Website
                         </a>
                     </div>
                 </div>
@@ -294,7 +297,7 @@
 
         <div class="modal-slider-wrapper" onclick="event.stopPropagation()">
             <button class="slider-arrow arrow-left" onclick="changeSlide(-1)">
-                <i class="fa-solid fa-chevron-left"></i>
+                <i class="ph-light ph-caret-left"></i>
             </button>
 
             <img class="modal-content" id="modalTargetImg" src="">
@@ -304,7 +307,7 @@
             </div>
 
             <button class="slider-arrow arrow-right" onclick="changeSlide(1)">
-                <i class="fa-solid fa-chevron-right"></i>
+                <i class="ph-light ph-caret-right"></i>
             </button>
         </div>
 
@@ -317,22 +320,22 @@
             <h3 class="section-title text-center">Technical Expertise</h3>
             <div class="skills-grid">
                 <div class="skill-card spec-panel">
-                    <i class="fa-solid fa-code skill-icon"></i>
+                    <i class="ph-light ph-code skill-icon"></i>
                     <h4>Web & Backend</h4>
                     <p>PHP (CodeIgniter 4), XAMPP, MySQL, HTML5/CSS3, Tailwind CSS, Bootstrap, REST and SOAP APIs, ETL Processing.</p>
                 </div>
                 <div class="skill-card spec-panel">
-                    <i class="fa-solid fa-mobile-screen-button skill-icon"></i>
+                    <i class="ph-light ph-device-mobile skill-icon"></i>
                     <h4>Mobile Application</h4>
                     <p>Flutter SDK Cross-Platform Implementations, Dart Core Systems, Android Studio configurations, NetBeans, Dev-C++, Core Java SE.</p>
                 </div>
                 <div class="skill-card spec-panel">
-                    <i class="fa-solid fa-microchip skill-icon"></i>
+                    <i class="ph-light ph-cpu skill-icon"></i>
                     <h4>IoT & Hardware</h4>
                     <p>ESP32 DevKit V1 Integrations, Arduino IDE, YF-S201 Flow Sensors, Ultrasonic & IR Arrays, Proteus, Livewire, AutoCAD.</p>
                 </div>
                 <div class="skill-card spec-panel">
-                    <i class="fa-solid fa-network-wired skill-icon"></i>
+                    <i class="ph-light ph-network skill-icon"></i>
                     <h4>Networking & Concurrency</h4>
                     <p>Cisco Packet Tracer modeling, Wireshark packet telemetry analysis, Fiber Optic hardware troubleshooting, Multithreading (ExecutorService, Message Passing Architectures), Distributed Systems Naming (DHT Chord).</p>
                 </div>
@@ -348,25 +351,25 @@
 
             <div class="contact-grid">
                 <a href="mailto:engkusyahmi@gmail.com" class="contact-box spec-panel">
-                    <i class="fa-solid fa-envelope"></i>
+                    <i class="ph-light ph-envelope-simple"></i>
                     <h4>Email Me</h4>
                     <p>engkusyahmi@gmail.com</p>
                 </a>
 
                 <a href="https://www.linkedin.com/in/engku-syahmi-496955250/" target="_blank" rel="noopener" class="contact-box spec-panel">
-                    <i class="fa-brands fa-linkedin"></i>
+                    <i class="ph-light ph-linkedin-logo"></i>
                     <h4>LinkedIn</h4>
                     <p>Connect Professional Profile</p>
                 </a>
 
                 <a href="https://github.com/Engkusyahmi" target="_blank" rel="noopener" class="contact-box spec-panel">
-                    <i class="fa-brands fa-github"></i>
+                    <i class="ph-light ph-github-logo"></i>
                     <h4>GitHub</h4>
                     <p>github.com/Engkusyahmi</p>
                 </a>
 
                 <a href="https://wa.me/60199595966" target="_blank" rel="noopener" class="contact-box spec-panel">
-                    <i class="fa-brands fa-whatsapp"></i>
+                    <i class="ph-light ph-whatsapp-logo"></i>
                     <h4>WhatsApp Me</h4>
                     <p>019-959 5966</p>
                 </a>
@@ -398,18 +401,52 @@
         const themeIcon = themeToggleBtn.querySelector('i');
         if (localStorage.getItem('theme') === 'dark') {
             document.body.classList.add('dark-mode');
-            themeIcon.classList.replace('fa-moon', 'fa-sun');
+            themeIcon.classList.replace('ph-moon', 'ph-sun');
         }
         themeToggleBtn.addEventListener('click', () => {
             document.body.classList.toggle('dark-mode');
             if (document.body.classList.contains('dark-mode')) {
-                themeIcon.classList.replace('fa-moon', 'fa-sun');
+                themeIcon.classList.replace('ph-moon', 'ph-sun');
                 localStorage.setItem('theme', 'dark');
             } else {
-                themeIcon.classList.replace('fa-sun', 'fa-moon');
+                themeIcon.classList.replace('ph-sun', 'ph-moon');
                 localStorage.setItem('theme', 'light');
             }
         });
+
+        /* Current-section nav indicator + scroll-in reveal, both via IntersectionObserver
+           (no scroll listeners, so no reflow cost) */
+        const navLinks = document.querySelectorAll('nav a[data-target]');
+        const sections = Array.from(navLinks)
+            .map(link => document.getElementById(link.getAttribute('data-target')))
+            .filter(Boolean);
+
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    navLinks.forEach(link => {
+                        const isActive = link.getAttribute('data-target') === entry.target.id;
+                        link.toggleAttribute('aria-current', isActive);
+                        if (isActive) link.setAttribute('aria-current', 'true');
+                    });
+                }
+            });
+        }, { rootMargin: '-45% 0px -45% 0px' });
+        sections.forEach(section => sectionObserver.observe(section));
+
+        const revealTargets = document.querySelectorAll(
+            '.exp-card, .project-card, .skill-card, .contact-box, .about-grid, .section-title, .section-desc'
+        );
+        revealTargets.forEach(el => el.classList.add('reveal'));
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15 });
+        revealTargets.forEach(el => revealObserver.observe(el));
 
         let currentImages = [];
         let currentImgIndex = 0;
